@@ -79,19 +79,16 @@
 
 
 
-<meta name="description" content="概率和统计概率和统计通常被我们放在一起，虽然有联系，但它们的实际含义其实截然相反。概率：我们不知道具体的数据，但是我有数据的模型。比如说，我告诉你，a是一个整数，在$ (0,10] $平均分布。$a=3$的概率是多少?  P(a=3)=1/10这里就是一个概率。 已知整体的分布，问你个体的概率。统计：我们知道数据的出现概率，但是没有数据模型的知识。现在，我告诉你，$a\in(0,10]$ &amp;am">
 <meta name="keywords" content="statistic,machine learning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="极大似然vs最大后验">
 <meta property="og:url" content="http://tswc.github.io/2018/01/10/statistic/index.html">
 <meta property="og:site_name" content="6 months for a job">
-<meta property="og:description" content="概率和统计概率和统计通常被我们放在一起，虽然有联系，但它们的实际含义其实截然相反。概率：我们不知道具体的数据，但是我有数据的模型。比如说，我告诉你，a是一个整数，在$ (0,10] $平均分布。$a=3$的概率是多少?  P(a=3)=1/10这里就是一个概率。 已知整体的分布，问你个体的概率。统计：我们知道数据的出现概率，但是没有数据模型的知识。现在，我告诉你，$a\in(0,10]$ &amp;am">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28gy1fnioxzp2g8j20u00gojuz.jpg">
-<meta property="og:updated_time" content="2018-01-16T11:58:31.783Z">
+<meta property="og:updated_time" content="2018-01-16T13:55:47.023Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="极大似然vs最大后验">
-<meta name="twitter:description" content="概率和统计概率和统计通常被我们放在一起，虽然有联系，但它们的实际含义其实截然相反。概率：我们不知道具体的数据，但是我有数据的模型。比如说，我告诉你，a是一个整数，在$ (0,10] $平均分布。$a=3$的概率是多少?  P(a=3)=1/10这里就是一个概率。 已知整体的分布，问你个体的概率。统计：我们知道数据的出现概率，但是没有数据模型的知识。现在，我告诉你，$a\in(0,10]$ &amp;am">
 <meta name="twitter:image" content="http://ww1.sinaimg.cn/large/48799a28gy1fnioxzp2g8j20u00gojuz.jpg">
 
 
@@ -353,25 +350,9 @@
 
       
       
-        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-          
-          
-            <div class="post-gallery-row">
-              <a class="post-gallery-img fancybox"
-                 href="http://ww1.sinaimg.cn/large/48799a28gy1fnioxzp2g8j20u00gojuz.jpg" rel="gallery_cjchltw900009pgu393ifxgzz"
-                 itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
-                <img src="http://ww1.sinaimg.cn/large/48799a28gy1fnioxzp2g8j20u00gojuz.jpg" itemprop="contentUrl"/>
-              </a>
-            
-          
-
-          
-          </div>
-        </div>
-      
 
       
-        <a id="more"></a>
+        <p><img src="http://ww1.sinaimg.cn/large/48799a28gy1fnioxzp2g8j20u00gojuz.jpg" width="600" height="600" align="center/"><br><a id="more"></a></p>
 <h1 id="概率和统计"><a href="#概率和统计" class="headerlink" title="概率和统计"></a>概率和统计</h1><p>概率和统计通常被我们放在一起，虽然有联系，但它们的实际含义其实截然相反。<br><strong>概率</strong>：我们不知道具体的数据，但是我有数据的模型。<br>比如说，我告诉你，a是一个整数，在$ (0,10] $平均分布。$a=3$的概率是多少? </p>
 <script type="math/tex; mode=display">P(a=3)=1/10</script><p>这里就是一个概率。 已知整体的分布，问你个体的概率。<br><strong>统计</strong>：我们知道数据的出现概率，但是没有数据模型的知识。<br>现在，我告诉你，$a\in(0,10]$ &amp; a is N，且a是0到9的概率均为$1/10$。a是怎么分布的。</p>
 <p><center> a在$(0,10]$上平均分布 </center><br>这里就是一个统计。我们知道个体出现的概率，问你整体的分布或者说模型是怎么样的。</p>
