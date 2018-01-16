@@ -208,6 +208,7 @@ $(document).ready(function () {
       var $brand = $('.brand');
       var $title = $('.site-title');
       var $subtitle = $('.site-subtitle');
+	  
       var $logoLineTop = $('.logo-line-before i');
       var $logoLineBottom = $('.logo-line-after i');
 
@@ -216,12 +217,13 @@ $(document).ready(function () {
         p: {opacity: 1},
         o: {duration: 200}
       });
-
-      NexT.utils.isMist() && hasElement([$logoLineTop, $logoLineBottom]) &&
-      sequence.push(
-        getMistLineSettings($logoLineTop, '100%'),
-        getMistLineSettings($logoLineBottom, '-100%')
-      );
+	
+      // tswc changed 16.01.2018	
+      // NexT.utils.isMist() && hasElement([$logoLineTop, $logoLineBottom]) &&
+      // sequence.push(
+        // getMistLineSettings($logoLineTop, '100%'),
+        // getMistLineSettings($logoLineBottom, '-100%')
+      // );
 
       hasElement($title) && sequence.push({
         e: $title,
