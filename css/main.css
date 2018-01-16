@@ -1822,7 +1822,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #9ff95d;
+  background: #2aaff5;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2754,7 +2754,7 @@ hr {
 }
 .posts-expand .post-title,
 .posts-expand .post-meta {
-  text-align: left;
+  text-align: center;
 }
 @media (max-width: 767px) {
   .posts-expand .post-title,
@@ -2903,4 +2903,11 @@ hr {
     width: auto;
     text-align: center;
   }
+}
+.post-title {
+  text-align: center;
+}
+.post-button {
+  margin-top: 0px;
+  text-align: right;
 }
