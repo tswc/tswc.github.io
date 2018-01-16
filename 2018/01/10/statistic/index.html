@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="6 months for a job">
 <meta property="og:description" content="MathJax.Hub.Config({ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]} });     http://blog.csdn.net/u011508640/article/details/72815981 概率和统计概率和统计通常被我们放在一起，虽然有联系，但它们的实际含义其实截然相反。概率：我们不知道具体的数据，但是我有数据的模">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-11T17:32:02.035Z">
+<meta property="og:updated_time" content="2018-01-16T09:22:36.722Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="极大似然vs最大后验">
 <meta name="twitter:description" content="MathJax.Hub.Config({ tex2jax: {inlineMath: [[&apos;$&apos;,&apos;$&apos;], [&apos;\\(&apos;,&apos;\\)&apos;]]} });     http://blog.csdn.net/u011508640/article/details/72815981 概率和统计概率和统计通常被我们放在一起，虽然有联系，但它们的实际含义其实截然相反。概率：我们不知道具体的数据，但是我有数据的模">
@@ -328,15 +328,22 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
 </script>
 
 <p><a href="http://blog.csdn.net/u011508640/article/details/72815981" target="_blank" rel="noopener">http://blog.csdn.net/u011508640/article/details/72815981</a></p>
-<h1 id="概率和统计"><a href="#概率和统计" class="headerlink" title="概率和统计"></a>概率和统计</h1><p>概率和统计通常被我们放在一起，虽然有联系，但它们的实际含义其实截然相反。<br><strong>概率</strong>：我们不知道具体的数据，但是我有数据的模型。<br>比如说，我告诉你，a是一个整数，在$ (0,10] $平均分布。$a=3$的概率是多少?<br>$$P(a=3)=1/10$$<br>这里就是一个概率。 已知整体的分布，问你个体的概率。<br><strong>统计</strong>：我们知道数据的出现概率，但是没有数据模型的知识。<br>现在，我告诉你，$a\in(0,10]$ &amp; a is N，且a是0到9的概率均为$1/10$。a是怎么分布的。</p>
+<h1 id="概率和统计"><a href="#概率和统计" class="headerlink" title="概率和统计"></a>概率和统计</h1><p>概率和统计通常被我们放在一起，虽然有联系，但它们的实际含义其实截然相反。<br><strong>概率</strong>：我们不知道具体的数据，但是我有数据的模型。<br>比如说，我告诉你，a是一个整数，在$ (0,10] $平均分布。$a=3$的概率是多少? </p>
+<script type="math/tex; mode=display">P(a=3)=1/10</script><p>这里就是一个概率。 已知整体的分布，问你个体的概率。<br><strong>统计</strong>：我们知道数据的出现概率，但是没有数据模型的知识。<br>现在，我告诉你，$a\in(0,10]$ &amp; a is N，且a是0到9的概率均为$1/10$。a是怎么分布的。</p>
 <p><center> a在$(0,10]$上平均分布 </center><br>这里就是一个统计。我们知道个体出现的概率，问你整体的分布或者说模型是怎么样的。</p>
 <p>总的来说就是，<br><strong>概率是已知模型，用模型（方程）来计算概率。</strong><br><strong>统计是已知概率，用概率来推算模型（方程）。</strong><br>对于机器学习领域来说，我们一般的流程是收集数据，希望通过已知的数据来学习规律，也就是推算出模型，用模型来处理未知的数据。<br>本文所侧重的极大似然和最大后验都属于统计的范畴。</p>
-<h1 id="贝叶斯"><a href="#贝叶斯" class="headerlink" title="贝叶斯"></a>贝叶斯</h1><p>先看看贝叶斯公式<br>$$P(A|B) = \frac{P(A,B)}{P(B)}   \tag{1.1}$$<br>$$P(A|B) = \frac{P(B|A)P(A)}{P(B)}    \tag{1.2}$$</p>
-<font color="red"><center><strong>贝叶斯公式就是在描述，你有多大把握能相信一件证据？（how much you can trust the evidence）</strong></center></font>
+<h1 id="贝叶斯"><a href="#贝叶斯" class="headerlink" title="贝叶斯"></a>贝叶斯</h1><p>先看看贝叶斯公式</p>
+<script type="math/tex; mode=display">P(A|B) = \frac{P(A,B)}{P(B)}   \tag{1.1}</script><script type="math/tex; mode=display">P(A|B) = \frac{P(B|A)P(A)}{P(B)}    \tag{1.2}</script><font color="red"><center>**贝叶斯公式就是在描述，你有多大把握能相信一件证据？（how much you can trust the evidence）**</center></font>
 
-<p>$P(A|B)$表示B事件发生的情况下，A事件发生的概率，也就是说如果B发生了，我们有多大把握A事件也发生。<br>如果同学小M，在这次期末考试中拿了全班第一，我们推测这个人应该是个大学霸。<br>A=学霸，B=全班第一，$P(A|B)$表示的就是如果某人是全班第一，那么他是个大学霸的概率。这件事在通常情况下是非常可信的，一个人成绩很容易成为衡量一个人学习好坏，学习态度的标准。<br>接下来，正真有意思的事情来了，<br>$$P(A|B) = \frac{P(B|A)P(A)}{P(B|A)P(A) + P(B|\sim A)P(\sim A)}\tag{1.3}$$</p>
-<p>贝叶斯的公式还能变成上面的这个形式，我们再用前面的例子代入进去思考。</p>
-
+<p>这句话说的有点直击灵魂，棒！<br>引用从<a href="http://blog.csdn.net/u011508640/article/details/72815981" target="_blank" rel="noopener">http://blog.csdn.net/u011508640/article/details/72815981</a>里看到的解释这份公式例子，十分通俗易懂。</p>
+<p>$P(A|B)$表示B事件发生的情况下，A事件发生的概率，也就是说如果B发生了，我们有多大把握A事件也发生。<br>想想这个情况。一辆汽车（或者电瓶车）的警报响了，你通常是什么反应？有小偷？撞车了？ 不。。 你通常什么反应都没有。因为汽车警报响一响实在是太正常了！每天都要发生好多次。本来，汽车警报设置的功能是，出现了异常情况，需要人关注。然而，由于虚警实在是太多，人们渐渐不相信警报的功能了。</p>
+<script type="math/tex; mode=display">P(A|B) = \frac{P(B|A)P(A)}{P(B|A)P(A) + P(B|\sim A)P(\sim A)}\tag{1.3}</script><p>我们假设响警报的目的就是想说汽车被砸了。把A计作“汽车被砸了”，B计作“警报响了”，带进贝叶斯公式里看。我们想求等式左边发生A|B的概率，这是在说警报响了，汽车也确实被砸了。汽车被砸引起（trigger）警报响，即B|A。但是，也有可能是汽车被小孩子皮球踢了一下、被行人碰了一下等其他原因（统统计作∼A），其他原因引起汽车警报响了，即B|∼A。那么，现在突然听见警报响了，这时汽车已经被砸了的概率是多少呢（这即是说，警报响这个证据有了，多大把握能相信它确实是在报警说汽车被砸了）？想一想，应当这样来计算。用警报响起、汽车也被砸了这事件的数量，除以响警报事件的数量（这是1.2）。进一步展开，即警报响起、汽车也被砸了的事件的数量，除以警报响起、汽车被砸了的事件数量加上警报响起、汽车没被砸的事件数量（这是1.3）。</p>
+<p>再想想1.3，如果想让$P(A|B)=1$，也就是要将$P(B|\sim A)P(\sim A)$清0，也就是说要么杜绝小孩踢皮球，行人碰到车的可能性，要么就要让警报器在这些例外情况下不工作。这样的话，警报器的可行度大大提升。</p>
+<p><strong>做事之前，要综合考虑所以的可能性</strong></p>
+<p>当考虑$P(A|B)$时，即使$P(B|A)$很大，若是$P(A)$很小，$P(A|B)$还是很难变得较大，因为虽然A与B联系很紧，但是A的先验概率过小。</p>
+<p>从这个角度思考贝叶斯公式：一个本来就难以发生的事情，就算出现某个证据和他强烈相关，也要谨慎。证据很可能来自别的虽然不是很相关，但发生概率较高的事情。 发现刚才写的代码编译报错，可是我今天状态特别好，这语言我也很熟悉，犯错的概率很低。因此觉得是编译器出错了。 ————别，还是先再检查下自己的代码吧。</p>
+<h1 id="似然-amp-后验"><a href="#似然-amp-后验" class="headerlink" title="似然&amp;后验"></a>似然&amp;后验</h1><p>似然: $P(X|\theta)$<br>对于似然函数求解的问题，一般来说模型确定，但是参数未知，通过实验得到一组数据要我们来估计模型参数。其中X就是实验得到的数据，$\theta$就是我们要估计的参数。<br>$P(X|\theta)$表示的是在已知模型中，当参数为$\theta$时，X发生的概率。很自然的，我们要使这件事发生的概率最大，这就是我们求$\theta$的标准。</p>
+<script type="math/tex; mode=display">\theta_{MLE} =  P(X \vert \theta)</script><script type="math/tex; mode=display">\theta_{MLE} &= \mathop{\rm arg\,max}\limits_{\theta} P(X \vert \theta)</script>
       
     </div>
     
@@ -524,7 +531,7 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概率和统计"><span class="nav-number">1.</span> <span class="nav-text">概率和统计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#贝叶斯"><span class="nav-number">2.</span> <span class="nav-text">贝叶斯</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概率和统计"><span class="nav-number">1.</span> <span class="nav-text">概率和统计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#贝叶斯"><span class="nav-number">2.</span> <span class="nav-text">贝叶斯</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#似然-amp-后验"><span class="nav-number">3.</span> <span class="nav-text">似然&amp;后验</span></a></li></ol></div>
             
 
           </div>
@@ -724,6 +731,8 @@ tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
   
 
   
+  
+
 
   
 
