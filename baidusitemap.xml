@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+    
+  <url>
+    <loc>http://tswc.github.io/tswc.github.io/2018/01/10/statistic/</loc>
+    <lastmod>2018-01-17T10:32:56.294Z</lastmod>
+    <data>
+        <display>
+        <title>极大似然vs最大后验</title>
+        <pubTime>2018-01-10T08:46:44.000Z</pubTime>
+        
+        <tag>statistic</tag>
+         
+        <tag>machine learning</tag>
+         
+         
+           
+             
+              <breadCrumb title="machine learning" url="http://tswc.github.io/tswc.github.io/categories/machine-learning/"/>
+          
+             
+              <breadCrumb title="basic" url="http://tswc.github.io/tswc.github.io/categories/machine-learning/basic/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://tswc.github.io/tswc.github.io/2018/01/09/test/</loc>
+    <lastmod>2018-01-16T12:12:59.104Z</lastmod>
+    <data>
+        <display>
+        <title>这是第一篇</title>
+        <pubTime>2018-01-09T13:04:42.000Z</pubTime>
+        
+        <tag>随</tag>
+         
+         
+           
+             
+              <breadCrumb title="写哪想哪" url="http://tswc.github.io/tswc.github.io/categories/%E5%86%99%E5%93%AA%E6%83%B3%E5%93%AA/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+</urlset>
