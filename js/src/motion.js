@@ -1,3 +1,13 @@
+
+/*TSWC changed 19.01.2018*/
+$('.site-author-image').click(function(){
+      window.location.href="http://localhost:4000/tswc.github.io/about/";
+});
+
+
+
+
+
 /* global NexT: true */
 
 $(document).ready(function () {
