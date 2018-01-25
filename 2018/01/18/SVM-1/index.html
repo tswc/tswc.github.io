@@ -90,7 +90,7 @@
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28gy1fnmiwutwjkj21430rjnhn.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28gy1fnlds2odulj20pm0mkglj.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28gy1fnlds2odulj20pm0mkglj.jpg">
-<meta property="og:updated_time" content="2018-01-25T11:17:34.972Z">
+<meta property="og:updated_time" content="2018-01-25T11:24:25.384Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="什么是SVM（一）">
 <meta name="twitter:image" content="http://ww1.sinaimg.cn/large/48799a28ly1fnt2a78i1tj20sw0e4acr.jpg">
@@ -370,7 +370,19 @@
 
       
         <p><img src="http://ww1.sinaimg.cn/large/48799a28ly1fnt2a78i1tj20sw0e4acr.jpg" width="600" height="600"><br><a id="more"></a></p>
-<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a><font color="#000080">概念</font></h1><p><strong><font size="4" color="#000080">SVM（Support Vector Machine）: 支持向量机</font></strong><br>这个名字看上去挺吓人的，里面的<strong>核心概念是“Support Vector”</strong>。<br><strong><font size="3" color="#A52A2A">以下属于个人胡诌</font></strong><br>所谓支持向量机，就是一个分类器就。它以Support Vector为基础，找到一个能分割数据点得到超平面。其中Support Vector一般来说是数据点中的一部分，超平面的确定只与Support Vector有关，与其他数据点无关。<br>支持向量机与普通分类器的区别:<br><strong>支持向量机：</strong><br>&emsp;&emsp;&emsp;&emsp;&emsp;关心少数点，要求作为支持向量的数据点距离分割面的距离尽可能大。<br>&emsp;&emsp;&emsp;&emsp;&emsp;对于除支持向量以外的点完全不考虑。<br><strong>普通分类器：</strong><br>&emsp;&emsp;&emsp;&emsp;&emsp;只要正确分类即可，不考虑每个点距离分割面的距离。<br>&emsp;&emsp;&emsp;&emsp;&emsp;考虑所以的数据点。</p>
+<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a><font color="#000080">概念</font></h1><p><strong><font size="4" color="#000080">SVM（Support Vector Machine）: 支持向量机</font></strong><br>这个名字看上去挺吓人的，里面的<strong>核心概念是“Support Vector”</strong>。<br><strong><font size="3" color="#A52A2A">以下属于个人胡诌</font></strong><br>所谓支持向量机，就是一个分类器就。它以Support Vector为基础，找到一个能分割数据点得到超平面。其中Support Vector一般来说是数据点中的一部分，超平面的确定只与Support Vector有关，与其他数据点无关。<br>支持向量机与普通分类器的区别:</p>
+<ul>
+<li><strong>支持向量机：</strong><ul>
+<li>关心少数点，要求作为支持向量的数据点距离分割面的距离尽可能大</li>
+<li>对于除支持向量以外的点完全不考虑<br><br></li>
+</ul>
+</li>
+<li><strong>普通分类器：</strong><ul>
+<li>只要正确分类即可，不考虑每个点距离分割面的距离</li>
+<li>考虑所有的数据点</li>
+</ul>
+</li>
+</ul>
 <hr>
 <h1 id="过程"><a href="#过程" class="headerlink" title="过程"></a><font color="#000080">过程</font></h1><p><img src="http://ww1.sinaimg.cn/large/48799a28gy1fnlds2odulj20pm0mkglj.jpg" width="500" height="500"></p>
 <p>如图，$WX+b=0$描绘一个能够分类的超平面。<br><br><br>在这幅图里，我们真正关心的是点到分界面的距离。</p>
