@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="6 months for a job">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28gy1fnioxzp2g8j20u00gojuz.jpg">
-<meta property="og:updated_time" content="2018-01-25T15:12:21.737Z">
+<meta property="og:updated_time" content="2018-01-25T15:39:48.612Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="极大似然vs最大后验">
 <meta name="twitter:image" content="http://ww1.sinaimg.cn/large/48799a28gy1fnioxzp2g8j20u00gojuz.jpg">
@@ -349,6 +349,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,051 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7 分钟
+                </span>
+              
+            </div>
+          
 
           
 
@@ -380,18 +411,19 @@
 <p><strong>做事之前，要综合考虑所以的可能性</strong></p>
 <p>当考虑$P(A|B)$时，即使$P(B|A)$很大，若是$P(A)$很小，$P(A|B)$还是很难变得较大，因为虽然A与B联系很紧，但是A的先验概率过小。</p>
 <p>从这个角度思考贝叶斯公式：一个本来就难以发生的事情，就算出现某个证据和他强烈相关，也要谨慎。证据很可能来自别的虽然不是很相关，但发生概率较高的事情。 发现刚才写的代码编译报错，可是我今天状态特别好，这语言我也很熟悉，犯错的概率很低。因此觉得是编译器出错了。 ————别，还是先再检查下自己的代码吧。</p>
-<h1 id="似然-amp-后验"><a href="#似然-amp-后验" class="headerlink" title="似然&amp;后验"></a>似然&amp;后验</h1><p>似然: $P(X|\theta)$=$P(X;\theta)$<br>对于似然函数求解的问题，一般来说模型确定，但是参数未知，通过实验得到一组数据要我们来估计模型参数。其中X就是实验得到的数据，$\theta$就是我们要估计的参数。<br>$P(X|\theta)$表示的是在已知模型中，当参数为$\theta$时，X发生的概率。很自然的，我们要使这件事发生的概率最大，这就是我们求$\theta$的标准。</p>
+<h1 id="似然-amp-后验"><a href="#似然-amp-后验" class="headerlink" title="似然&amp;后验"></a>似然&amp;后验</h1><h2 id="似然-P-X-theta"><a href="#似然-P-X-theta" class="headerlink" title="似然: $P(X|\theta)$"></a>似然: $P(X|\theta)$</h2><p>对于似然函数求解的问题，一般来说模型确定，但是参数未知，通过实验得到一组数据要我们来估计模型参数。其中X就是实验得到的数据，$\theta$就是我们要估计的参数。<br>$P(X|\theta)$表示的是在已知模型中，当参数为$\theta$时，X发生的概率。很自然的，我们要使这件事发生的概率最大，这就是我们求$\theta$的标准。<br>最大似然问题中$P(X|\theta)$表示的不是条件概率，因为$P(\theta)=1$，也就是说$\theta$不是一个随机变量，在这里$P(X|\theta)$等价于$P(X;\theta)$。</p>
 <script type="math/tex; mode=display">\theta_{MLE} = \mathop{\rm arg\,max}\limits_{\theta} P(X;\theta)</script><p>对于这个式子中的分号，到底和表示条件概率的竖线有什么区别，这里有解释<br><a href="http://blog.csdn.net/pipisorry/article/details/42715245" target="_blank" rel="noopener">http://blog.csdn.net/pipisorry/article/details/42715245</a><br><strong>这里想想$P(X|\theta)$和$P(X;\theta)$的区别在哪？</strong><br>（关于这个问题想了很久，下面是纯粹个人想法，不保证正确）<br>出现”|”时，其实表示的条件概率，等价于$P(X,\theta)/P(\theta)$；出现”;”时，其实表示的是X的概率，只不过告诉我们有一个参数是$\theta$，等价于$P(X)$。<br>分歧点就在$\theta$上，$\theta$到底是不是一个随机变量？<br>如果我们将$P(X|\theta)$理解为条件概率，不考虑上面链接中说的等价情况。$P(X;\theta)$认为，$\theta$未知但确定，不存在概率的问题，只是具体的值需要听过上面的式子求得。或者说，我们对$\theta$不存在任何先验知识，所以不考虑$\theta$的分布情况，任何的$\theta$值对我们来说都是等价的。</p>
-<p>后验:$P(X|\theta)P(\theta)$<br>几乎所以关于后验概率的解释都是</p>
+<h2 id="后验-P-theta-X"><a href="#后验-P-theta-X" class="headerlink" title="后验:$P(\theta|X)$"></a>后验:$P(\theta|X)$</h2><p>几乎所以关于后验概率的解释都是</p>
 <script type="math/tex; mode=display">
 P(\theta \vert X) = \frac{P(X \vert \theta) P(\theta)}{P(X)} \\
                   \propto P(X \vert \theta) P(\theta)</script><p>而我在这里的对于后验概率得到想法与这个过程恰恰相反。<br>所谓后验的意义，其实是我们有了先验的知识，所以才有了后验的概念。这个问题中，先验的知识其实就是$P(\theta)$。那么我们在极大似然中所用的$P(X;\theta)$应该写成$P(X|\theta)$，向我们前文中提到的，<strong>“一个本来就难以发生的事情，就算出现某个证据和他强烈相关，也要谨慎。”</strong><br>我们希望最大化X的发生概率，不能仅仅最大化$P(X|\theta)$，因为即使X与$\theta$强烈相关，若是$P(\theta)$自身发生的概率太小，X还是不容易发生。<br>所以要将$P(\theta)$也考虑进去，才能保证X的发生概率。</p>
 <script type="math/tex; mode=display">
 P(X \vert \theta) P(\theta) = \frac{P(X \vert \theta) P(\theta)}{P(X)}
-                        \propto P(\theta \vert X)</script><p>考虑到编程的例子，我这里很有可能还是错的，欢迎指正！</p>
+                        \propto P(\theta \vert X)</script><p>而最大后验这个名字的由来，也就是因为$P(\theta|X)$表示的是已知先验知识$P(X)$的情况下，得到关于$\theta$的概率。</p>
 <p><strong>想法不一定正确，但是结论还是可以保证的</strong><br>对于最大似然和最大后验的理解：两者的分歧点在于对于参数$\theta$的看法，将$\theta$视为未知定值时，是最大似然；将$\theta$视为随机变量时，考虑$P(\theta)$时是最大后验。</p>
 <h2 id="例2【掷硬币】"><a href="#例2【掷硬币】" class="headerlink" title="例2【掷硬币】"></a>例2【掷硬币】</h2><p><a href="http://blog.csdn.net/u011508640/article/details/72815981" target="_blank" rel="noopener">http://blog.csdn.net/u011508640/article/details/72815981</a><br>还是nebulaf91 博客里，有个掷硬币的例子来解释最大似然和最大后验。</p>
 <h1 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h1><p>关于具体例子：<a href="http://blog.csdn.net/pipisorry/article/details/42715245" target="_blank" rel="noopener">http://blog.csdn.net/pipisorry/article/details/42715245</a><br>关于$P(X|\theta)$和$P(X;\theta)$的理解：<a href="http://blog.csdn.net/u011508640/article/details/72815981" target="_blank" rel="noopener">http://blog.csdn.net/u011508640/article/details/72815981</a></p>
+<p>25.01.2018 新发现一篇和我这里想法很相似的文章：<a href="https://zhuanlan.zhihu.com/p/32480810" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/32480810</a></p>
 
       
     </div>
@@ -617,7 +649,7 @@ show_date_time();
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概率和统计"><span class="nav-number">1.</span> <span class="nav-text">概率和统计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#贝叶斯"><span class="nav-number">2.</span> <span class="nav-text">贝叶斯</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#例1【汽车被砸与警报器】"><span class="nav-number">2.1.</span> <span class="nav-text">例1【汽车被砸与警报器】</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#似然-amp-后验"><span class="nav-number">3.</span> <span class="nav-text">似然&amp;后验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#例2【掷硬币】"><span class="nav-number">3.1.</span> <span class="nav-text">例2【掷硬币】</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考："><span class="nav-number">4.</span> <span class="nav-text">参考：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概率和统计"><span class="nav-number">1.</span> <span class="nav-text">概率和统计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#贝叶斯"><span class="nav-number">2.</span> <span class="nav-text">贝叶斯</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#例1【汽车被砸与警报器】"><span class="nav-number">2.1.</span> <span class="nav-text">例1【汽车被砸与警报器】</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#似然-amp-后验"><span class="nav-number">3.</span> <span class="nav-text">似然&amp;后验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#似然-P-X-theta"><span class="nav-number">3.1.</span> <span class="nav-text">似然: $P(X|\theta)$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后验-P-theta-X"><span class="nav-number">3.2.</span> <span class="nav-text">后验:$P(\theta|X)$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例2【掷硬币】"><span class="nav-number">3.3.</span> <span class="nav-text">例2【掷硬币】</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考："><span class="nav-number">4.</span> <span class="nav-text">参考：</span></a></li></ol></div>
             
 
           </div>
