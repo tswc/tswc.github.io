@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/tswc.github.io/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/tswc.github.io/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/tswc.github.io/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/tswc.github.io/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/tswc.github.io/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/tswc.github.io/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/tswc.github.io/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="概念SVM（Support Vector Machine）: 支持向量机这个名字看上去挺吓人的，里面的核心概念是“Support Vector”。以下属于个人胡诌所谓支持向量机，就是一个分类器就。它以Support Vector为基础，找到一个能分割数据点得到超平面。其中Support Vector一般来说是数据点中的一部分，超平面的确定只与Support Vector有关，与其他数据点无关。支持">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SVM的非学术性描述（1）">
+<meta property="og:url" content="http://tswc.github.io/2018/01/18/SVM-1/index.html">
+<meta property="og:site_name" content="6 months for a job">
+<meta property="og:description" content="概念SVM（Support Vector Machine）: 支持向量机这个名字看上去挺吓人的，里面的核心概念是“Support Vector”。以下属于个人胡诌所谓支持向量机，就是一个分类器就。它以Support Vector为基础，找到一个能分割数据点得到超平面。其中Support Vector一般来说是数据点中的一部分，超平面的确定只与Support Vector有关，与其他数据点无关。支持">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28gy1fnlds2odulj20pm0mkglj.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28gy1fnmiwutwjkj21430rjnhn.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28gy1fnlds2odulj20pm0mkglj.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28gy1fnlds2odulj20pm0mkglj.jpg">
+<meta property="og:updated_time" content="2018-01-25T10:55:02.582Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SVM的非学术性描述（1）">
+<meta name="twitter:description" content="概念SVM（Support Vector Machine）: 支持向量机这个名字看上去挺吓人的，里面的核心概念是“Support Vector”。以下属于个人胡诌所谓支持向量机，就是一个分类器就。它以Support Vector为基础，找到一个能分割数据点得到超平面。其中Support Vector一般来说是数据点中的一部分，超平面的确定只与Support Vector有关，与其他数据点无关。支持">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/48799a28gy1fnlds2odulj20pm0mkglj.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/tswc.github.io/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://tswc.github.io/2018/01/18/SVM-1/"/>
+
+
+
+
+
+  <title>SVM的非学术性描述（1） | 6 months for a job</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/tswc.github.io/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">6 months for a job</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">流放地</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/tswc.github.io/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/tswc.github.io/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tswc.github.io/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/tswc.github.io/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://tswc.github.io/tswc.github.io/2018/01/18/SVM-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jian Tang">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://ww1.sinaimg.cn/large/48799a28gy1fnaxafs6tyj20500500si.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="6 months for a job">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">SVM的非学术性描述（1）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-18T15:48:17+01:00">
+                2018-01-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/tswc.github.io/2018/01/18/SVM-1/" class="leancloud_visitors" data-flag-title="SVM的非学术性描述（1）">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+				 <span>℃</span>
+				 
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a><font color="#000080">概念</font></h1><p><strong><font size="4" color="#000080">SVM（Support Vector Machine）: 支持向量机</font></strong><br>这个名字看上去挺吓人的，里面的<strong>核心概念是“Support Vector”</strong>。<br><strong><font size="3" color="#A52A2A">以下属于个人胡诌</font></strong><br>所谓支持向量机，就是一个分类器就。它以Support Vector为基础，找到一个能分割数据点得到超平面。其中Support Vector一般来说是数据点中的一部分，超平面的确定只与Support Vector有关，与其他数据点无关。<br>支持向量机与普通分类器的区别:<br><strong>支持向量机：</strong><br>&emsp;&emsp;&emsp;&emsp;&emsp;关心少数点，要求作为支持向量的数据点距离分割面的距离尽可能大。<br>&emsp;&emsp;&emsp;&emsp;&emsp;对于除支持向量以外的点完全不考虑。<br><strong>普通分类器：</strong><br>&emsp;&emsp;&emsp;&emsp;&emsp;只要正确分类即可，不考虑每个点距离分割面的距离。<br>&emsp;&emsp;&emsp;&emsp;&emsp;考虑所以的数据点。</p>
+<hr>
+<h1 id="过程"><a href="#过程" class="headerlink" title="过程"></a><font color="#000080">过程</font></h1><p><img src="http://ww1.sinaimg.cn/large/48799a28gy1fnlds2odulj20pm0mkglj.jpg" width="500" height="500"></p>
+<p>如图，$WX+b=0$描绘一个能够分类的超平面。<br><br><br>在这幅图里，我们真正关心的是点到分界面的距离。</p>
+<p><img src="http://ww1.sinaimg.cn/large/48799a28gy1fnmiwutwjkj21430rjnhn.jpg" width="500" height="500"></p>
+<p>这张图片来自机器学习技法的课程，推荐一下林老师的机器学习课程<a href="https://www.youtube.com/playlist?list=PLXVfgk9fNX2IQOYPmqjqWsNUFl2kpk1U2" target="_blank" rel="noopener">机器学习技法</a>。<br><br>最原始的方程从我们的概念里来：</p>
+<script type="math/tex; mode=display">
+\mathop{max}\limits_{w,b} \frac {\hat\gamma} {||w||} \\
+ s.t. y_i(w^Tx_i+b) = \hat\gamma_i \ge \hat\gamma \\
+\hat\gamma = wx+b</script><p>在这组方程中，式2.1表示我们要求出$w,b$能最大化数据点到超平面的距离，式2.2表示对最大化距离的约束，要求所有数据点到超平面的距离都大于我们求得的距离，式2.3表示我们式中的$\gamma$是由别的式子求得。</p>
+<h2 id="疑点1：为什么会有margin-1"><a href="#疑点1：为什么会有margin-1" class="headerlink" title="疑点1：为什么会有margin=1?"></a>疑点1：为什么会有margin=1?</h2><div>
+<ul>
+<li style="float:left;border:solid 1px 000;margin:2px;;"><img src="http://ww1.sinaimg.cn/large/48799a28gy1fnlds2odulj20pm0mkglj.jpg" width="400" height="400"></li>
+
+<li style="float:left;border:solid 1px 000;margin:2px;"><img src="http://ww1.sinaimg.cn/large/48799a28gy1fnlds2odulj20pm0mkglj.jpg" width="550" height="550"></li>
+</ul>
+</div>
+
+<p><div style="margin:0px;clear:left;">
+让我们看一下上图，明眼人当然可以发现这两张完全就是一张图，笔者也就是粗暴的把这两张图放缩了一下。但是几何距离确确实实改变了。
+那么问题来了，如果给你这两个图，让你做分类，结果一样么？ </div><br>答案一定是肯定的：一样啊！（你逗我呢？你以为你长胖了我就不认识你了？明明就是同一组数据，我才不要再重复分一遍呢！）<br>这个事情的根源在于：</p>
+<script type="math/tex; mode=display">WX+b=0</script><p>用来表示分界线的式子可以任意放缩，因为右边是0。也就是说$\alpha WX+\alpha b=0$和原式代表的直线是完全相同的。<br>为什么会这样？因为对于坐标系中的一条直线，我关心的其实不是绝对的值，而是相对的。也就是说如果这里$X = [X_1,X_2]$，那么我们确定这条直线角度的方式实际上是找到$\frac{W_1}{W_2}$（b是确定偏差的，但是直线的角度是最重要的）。那么当$W_1,W_2$进行等比例缩放的时候，完全不影响直线方向，再加上b也进行了等比例缩放，那么连直线的位置也不会被改变了。<br>那么对式2.2进行处理，令$W’=\hat \gamma W, b = \hat \gamma b$,原式就变成了</p>
+<script type="math/tex; mode=display">\mathop{max}\limits_{w’,b’} \frac {1} {||w’||} \\ s.t. y_i({w’}^Tx_i+b’) \ge 1</script><p>之所以这么做仅仅是因为这样有利于后续计算，属于数学手段，<strong><font color="red">当然在物理意义是可以理解的，就像上面两幅图，等比例的放缩并不影响分类的过程。</font></strong></p>
+<h2 id="疑点2：拉格朗日乘子法是什么？"><a href="#疑点2：拉格朗日乘子法是什么？" class="headerlink" title="疑点2：拉格朗日乘子法是什么？"></a>疑点2：拉格朗日乘子法是什么？</h2><p>将原式</p>
+<script type="math/tex; mode=display">min \frac {1} {2}||w||^2 \\ s.t. y_i({w’}^Tx_i+b’) \ge 1,i=1,2,..,m</script><p>用拉格朗日乘子法的方法来解，目的是将约束用数学的运算来表达。</p>
+<script type="math/tex; mode=display">\mathcal{L}(w,b,\alpha)=\frac {1} {2}||w||^2 - \sum_{i=1}^n \alpha_i(y_i(w^Tx_i+b)-1)</script><p>我们可以将原问题转化为：</p>
+<script type="math/tex; mode=display">\mathop{min}\limits_{w,b} \mathop{max}\limits_{\alpha_i \ge 0}\mathcal{L}(w,b,\alpha)</script><p>为什么这里可以这么转换？结果真的和原问题相同么？<br>首先我们看<script type="math/tex">\mathop{max}\limits_{\alpha_i \ge 0}\mathcal{L}(w,b,\alpha)</script>，如果不满足条件，那么$ y_i({w’}^Tx_i+b’) -1&lt; 0$，那么当$\alpha$取$\infty$原式也会趋近于$\infty$，如果满足条件，也就是$ y_i({w’}^Tx_i+b’) -1\ge 0$，那么要想这个式子取得最大值，只能让$\alpha=0$，或者$ y_i({w’}^Tx_i+b’) -1=0$，所以</p>
+<script type="math/tex; mode=display">
+\begin{equation}  
+\mathop{max}\limits_{\alpha_i \ge 0}\mathcal{L}(w,b,\alpha) =
+\left\{  
+             \begin{array}{lr}  
+             \frac {1} {2}||w||^2, &  s.t. y_i({w’}^Tx_i+b’) \ge 1,i=1,2,..,m\\  
+             \infty, & s.t. y_i({w’}^Tx_i+b’) < 1,i=1,2,..,m&    
+             \end{array}  
+\right.  
+\end{equation}</script><p>接着<script type="math/tex">\mathop{min}\limits_{w,b} \mathop{max}\limits_{\alpha_i \ge 0}\mathcal{L}(w,b,\alpha)</script>肯定不可能去取$\infty$，所以也就自然而然的转变回了原来的问题，并且也不存在额外的约束条件。</p>
+<p><strong><font color="red">物理意义</font></strong><br>我们刚刚从数学公式上理解了上面的变换，上式也包含了深刻的物理意义。<br>$\mathcal{L}(w,b,\alpha)$包含两部分，第一部分是$\frac {1} {2}||w||^2$,可以看出这一部分和数据集毫无关系，因为不涉及到$x,y$。</p>
+<p>第二部分是$\sum_{i=1}^n \alpha_i(y_i(w^Tx_i+b)-1)$， 对于$\alpha_i(y_i(w^Tx_i+b)-1)$ ,要满足 $ \mathop{max}\limits_{\alpha_i \ge 0}\mathcal{L}(w,b,\alpha)$，就是要$\alpha_i(y_i(w^Tx_i+b)-1)$。<br>在林轩田老师的课里，林老师把$\alpha$和$y_i(w^Tx_i+b)-1$比作哈利波特和伏地魔，意思就是必须有个得死，要不然剧情就进行不下去了。“死”的意思这里就是“=0”。<br>当$y_i(w^Tx_i+b)-1=0$时，代表这个点是支持向量，所以$\alpha \neq 0$，这表示我在做这个优化问题的时候考虑了这个点。<br>当$y_i(w^Tx_i+b)-1&gt;0$时，代表这个点不是支持向量，所以$\alpha=0$，也就是说不考虑这个点。<br><strong><font color="red">这也就是SVM一个十分重要的性质，少数的支持向量决定了分界面的位置，改变其余点不会影响分类的结果。</font></strong></p>
+<p>机器学习技法中对朗格朗日乘子法的讲解:<a href="https://www.youtube.com/watch?v=VUp-17l03lk&list=PLXVfgk9fNX2IQOYPmqjqWsNUFl2kpk1U2&index=6" target="*blank" rel="noopener">朗格朗日乘子法——-机器学习技法</a><br>一篇关于拉格朗日乘子法和KKT的介绍:<a href="http://www.cnblogs.com/mo-wang/p/4775548.html](http://www.cnblogs.com/mo-wang/p/4775548.html)" target="*blank" rel="noopener">关于朗格朗日乘子法</a></p>
+<h2 id="疑点3：拉格朗日对偶是什么？"><a href="#疑点3：拉格朗日对偶是什么？" class="headerlink" title="疑点3：拉格朗日对偶是什么？"></a>疑点3：拉格朗日对偶是什么？</h2><script type="math/tex; mode=display">\mathop{min}\limits_{w,b} \mathop{max}\limits_{\alpha_i \ge 0}\mathcal{L}(w,b,\alpha) \ge \mathop{max}\limits_{\alpha_i \ge 0} \mathop{min}\limits_{w,b} \mathcal{L}(w,b,\alpha)</script><p>关于这里的解释是，最大值中的最小值会大于最小值中的最大值，这个概念类似于：将军中的矮子总得比矮子中的将军高吧？<br>用数学里的术语解释是，左右两边是个弱对偶。当满足强对偶条件时，等式两边可以取等号。<br>这里说说吧，因为数学氛围比较重，确实有点吃力，而且大多数书里也不怎么解释这里。</p>
+<p>原来的式子是这样的</p>
+<script type="math/tex; mode=display">\mathcal{L}(w,b,\alpha)=\frac {1} {2}||w||^2 + \sum_{i=1}^n \alpha_i(1-y_i(w^Tx_i+b))</script><p>写成</p>
+<script type="math/tex; mode=display">\mathcal{L}(x,\alpha)=f(x) + \sum_{i=1}^n \alpha_i g_i(x)\\
+s.t. \alpha_i \ge 0, g_i(x) \le 0 \tag{3.3.1}</script><p>由式3.3.1可得$\alpha g_i(x) \le 0$，</p>
+<p>可得：</p>
+<script type="math/tex; mode=display">\mathop{max}\limits_{\alpha_i \ge 0}\mathcal{L}(x,\alpha)=f(x)</script><p>也就是：</p>
+<script type="math/tex; mode=display">\mathop{min}\limits_{x}f(x)=\mathop{min}\limits_{x}\mathop{max}\limits_{\alpha_i \ge 0}\mathcal{L}(x,\alpha)</script><p>那么怎么把他转换一个方便推导的对偶问题呢？</p>
+<script type="math/tex; mode=display">
+\mathop{max}\limits_{\alpha_i \ge 0}\mathop{min}\limits_{x}\mathcal{L}(x,\alpha)\\
+= \mathop{max}\limits_{\alpha_i \ge 0}[\mathop{min}\limits_{x}f(x)+\mathop{min}\limits_{x}\alpha g(x)]\\
+= \mathop{min}\limits_{x}f(x)+\mathop{max}\limits_{\alpha_i \ge 0}\mathop{min}\limits_{x}\alpha g(x)</script><p>我们目的是要让这个式子成立，</p>
+<script type="math/tex; mode=display">
+\mathop{max}\limits_{\alpha_i \ge 0}\mathop{min}\limits_{x}\mathcal{L}(x,\alpha) = \mathop{min}\limits_{x}f(x)</script><p>也就是说</p>
+<script type="math/tex; mode=display">
+\begin{equation}  
+\left .
+        \begin{array}{lr}  
+             \alpha \ge 0 \\
+             g(x) \le 0   
+        \end{array}  
+\right \}=>
+
+\mathop{max}\limits_{\alpha_i \ge 0}\mathop{min}\limits_{x}\alpha g(x) = 
+
+
+\left \{ 
+        \begin{array}{lr}  
+             0, &  if\; \alpha=0 \;or \;g(x)=0\\  
+             -\infty, & if \;\alpha>0\;and \;g(x)<0   
+        \end{array}  
+\right .
+
+\end{equation}</script><p>由此可知，</p>
+<script type="math/tex; mode=display">
+\begin{equation}  
+\left .
+        \begin{array}{lr}  
+             \alpha=0 \\ g(x)=0 
+        \end{array}  
+\right \}=>
+\mathop{max}\limits_{\alpha_i \ge 0}\mathop{min}\limits_{x} \mathcal{L}(x,\alpha) = 
+\mathop{min}\limits_{x}\mathop{max}\limits_{\alpha_i \ge 0} \mathcal{L}(x,\alpha) 
+
+
+\end{equation}</script><p>所以，原问题转化成</p>
+<script type="math/tex; mode=display">
+\mathop{max}\limits_{\alpha_i \ge 0}\mathop{min}\limits_{x} \mathcal{L}(x,\alpha) \\
+s.t. \alpha \ge 0\\
+    \alpha g(x) = 0\\
+    g(x) \le 0</script><p>这里的所谓的对偶，把max和min的顺序调换了一下，以求让求解更加简单。</p>
+<p>这里具体讲解了KKT：<a href="http://www.cnblogs.com/zhangchaoyang/articles/2726873.html" target="*blank" rel="noopener">KKT讲解</a></p>
+<h2 id="求解"><a href="#求解" class="headerlink" title="求解"></a>求解</h2><p>解决完这三个问题，对于基本SVM的推导上，差不多算是扫清了难点。<br>我们首先看</p>
+<script type="math/tex; mode=display">
+\mathop{min}\limits_{x} \mathcal{L}(x,\alpha)</script><p>凸优化问题，不多说直先求导</p>
+<script type="math/tex; mode=display">
+\frac {\partial \mathcal{L}}{\partial w}=0 => w = \sum_{i=1}^n \alpha_i y_i x_i    \\
+\frac {\partial \mathcal{L}}{\partial b}=0 => \sum_{i=1}^n \alpha_i y_i=0</script><p>代入原式得</p>
+<script type="math/tex; mode=display">
+\mathop{min}\limits_{w,b}\mathcal{L}(w,b,\alpha) = \sum_{i=1}^n \alpha_i - \frac{1}{2} \sum_{i,j=1}^n \alpha_i \alpha_j y_i y_j x_i^T x_j</script><p>最终我们将原问题变为</p>
+<script type="math/tex; mode=display">
+\mathop{max}\limits_{\alpha} \sum_{i=1}^n \alpha_i - \frac{1}{2} \sum_{i,j=1}^n \alpha_i \alpha_j y_i y_j x_i^T x_j\\
+s.t. \alpha>0   \\
+\sum_{i=1}^n \alpha_i y_i=0</script><p>最终的求解会运用SMO算法，本文暂时不对这个算法进行具体讲解。<br>关于SMO算法的两篇讲解文：<br><a href="http://www.cnblogs.com/jerrylead/archive/2011/03/18/1988419.html" target="*blank" rel="noopener">SMO讲解——JerryLead</a><br><a href="http://blog.csdn.net/shijing_0214/article/details/51017029" target="*blank" rel="noopener">SMO讲解</a></p>
+<p>写到这里，对于基本支持向量机，也就是硬间隔支持向量机的定义和推导告一段落，现在，我们回顾一下我们如何一步步走到这里。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
+<li>有个分类，或者可以当作分类的回归问题</li>
+<li>将每个样本在坐标系中表示，坐标轴对应样本的Features</li>
+<li>用最基本的线性方程$WX+b=0$来定义超平面，设定目标为：超平面能将不同类的点分隔开来</li>
+<li><p>引入几何距离的概念（因为我们希望点到超平面的距离尽可能大）</p>
+<script type="math/tex; mode=display">\mathop{max}\limits_{w,b}\frac {wx+b} {||w||}=\mathop{max}\limits_{w,b}\frac {\hat\gamma} {||w||}\\
+s.t. y_i(w^Tx_i+b) = \hat\gamma_i \ge \hat\gamma</script></li>
+<li><p>由于问题中对于点的分割实际上也就是对于位置的分割，所以坐标系的等比例放缩其实不影响分割。于是，为了方便进行数学求解，原式变为</p>
+<script type="math/tex; mode=display">\mathop{max}\limits_{w,b}\frac {1}{||w||}\\
+s.t. y_i({w’}^Tx_i+b’) \ge 1</script></li>
+<li>对于有条件的约束问题，我们希望将约束放回原式，这样便于求解，所以运用拉格朗日乘子法<script type="math/tex; mode=display">
+\mathop{min}\limits_{w,b} \mathop{max}\limits_{\alpha_i \ge 0}\frac {1} {2}||w||^2 - \sum_{i=1}^n \alpha_i(y_i(w^Tx_i+b)-1)</script>将上式写为<script type="math/tex; mode=display">
+\mathop{min}\limits_{w,b} \mathop{max}\limits_{\alpha_i \ge 0}\mathcal{L}(w,b,\alpha)</script></li>
+<li>首先对$\alpha$进行优化很不方便，这里运用拉格朗日对偶交换上式中最大最小的次序，将问题变为先对$W,b$优化的问题。<script type="math/tex; mode=display">
+\mathop{max}\limits_{\alpha_i \ge 0}\mathop{min}\limits_{x} \mathcal{L}(x,\alpha) \\
+s.t. \alpha \ge 0\\
+ \alpha g(x) = 0\\
+ g(x) \le 0</script></li>
+<li>满足KKT条件的情况下，用求导的方法用$\alpha,x,y$表示$W,b$,将原式变为对$\alpha$的优化问题<script type="math/tex; mode=display">
+\mathop{max}\limits_{\alpha} \sum_{i=1}^n \alpha_i - \frac{1}{2} \sum_{i,j=1}^n \alpha_i \alpha_j y_i y_j x_i^T x_j\\
+s.t. \alpha>0   \\
+\sum_{i=1}^n \alpha_i y_i=0</script></li>
+<li>使用SMO算法进行求解。</li>
+</ol>
+<p>可以看到SVM在对问题求解方法的定义上十分简洁，然后在求解过程中运用了大量的数学技巧，实质上是对实际问题的建模，用数学推导的方式代替了复杂的物理意义理解。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/tswc.github.io/2018/01/10/statistic/" rel="next" title="极大似然vs最大后验">
+                <i class="fa fa-chevron-left"></i> 极大似然vs最大后验
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://ww1.sinaimg.cn/large/48799a28gy1fnaxafs6tyj20500500si.jpg"
+                alt="Jian Tang" />
+            
+              <p class="site-author-name" itemprop="name">Jian Tang</p>
+              <p class="site-description motion-element" itemprop="description"><font face="黑体" >君子一诺，五岳皆轻。</font>
+			<div id="days"></div>
+</script>
+<script language="javascript">
+function show_date_time(){
+window.setTimeout("show_date_time()", 1000);
+BirthDay=new Date("01/08/2018 8:00:00");
+today=new Date();
+timeold=(today.getTime()-BirthDay.getTime());
+sectimeold=timeold/1000
+secondsold=Math.floor(sectimeold);
+msPerDay=24*60*60*1000
+e_daysold=timeold/msPerDay
+daysold=Math.floor(e_daysold);
+e_hrsold=(e_daysold-daysold)*24;
+hrsold=setzero(Math.floor(e_hrsold));
+e_minsold=(e_hrsold-hrsold)*60;
+minsold=setzero(Math.floor((e_hrsold-hrsold)*60));
+seconds=setzero(Math.floor((e_minsold-minsold)*60));
+document.getElementById('days').innerHTML="已运行"+daysold+"天"+hrsold+"小时"+minsold+"分"+seconds+"秒";
+}
+function setzero(i){
+if (i<10)
+{i="0" + i};
+return i;
+}
+show_date_time();
+</script>
+
+			</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/tswc.github.io/archives">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/tswc.github.io/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tswc.github.io/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/tswc?tab=repositories" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/tang-jian-28/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-magnet"></i>知乎</a>
+                  </span>
+                
+				
+            </div>
+          
+
+          
+          
+
+          
+          
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+			
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#过程"><span class="nav-number">2.</span> <span class="nav-text">过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#疑点1：为什么会有margin-1"><span class="nav-number">2.1.</span> <span class="nav-text">疑点1：为什么会有margin=1?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#疑点2：拉格朗日乘子法是什么？"><span class="nav-number">2.2.</span> <span class="nav-text">疑点2：拉格朗日乘子法是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#疑点3：拉格朗日对偶是什么？"><span class="nav-number">2.3.</span> <span class="nav-text">疑点3：拉格朗日对偶是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求解"><span class="nav-number">2.4.</span> <span class="nav-text">求解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jian Tang</span>
+
+  
+</div>
+
+
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4
+
+
+
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/tswc.github.io/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/tswc.github.io/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/tswc.github.io/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/tswc.github.io/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/tswc.github.io/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/tswc.github.io/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/tswc.github.io/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/tswc.github.io/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/tswc.github.io/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/tswc.github.io/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/tswc.github.io/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("S2YKzwaNT9oqI5Dv293mi83o-gzGzoHsz", "6hNf4tQm0SizcD8uTqVvfxqv");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+</body>
+</html>
