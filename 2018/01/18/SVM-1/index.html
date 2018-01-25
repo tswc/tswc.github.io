@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="machine learning,math," />
 
 
 
@@ -79,22 +79,21 @@
 
 
 
-<meta name="description" content="概念SVM（Support Vector Machine）: 支持向量机这个名字看上去挺吓人的，里面的核心概念是“Support Vector”。以下属于个人胡诌所谓支持向量机，就是一个分类器就。它以Support Vector为基础，找到一个能分割数据点得到超平面。其中Support Vector一般来说是数据点中的一部分，超平面的确定只与Support Vector有关，与其他数据点无关。支持">
+<meta name="keywords" content="machine learning,math">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SVM的非学术性描述（1）">
+<meta property="og:title" content="闲话SVM（一）">
 <meta property="og:url" content="http://tswc.github.io/2018/01/18/SVM-1/index.html">
 <meta property="og:site_name" content="6 months for a job">
-<meta property="og:description" content="概念SVM（Support Vector Machine）: 支持向量机这个名字看上去挺吓人的，里面的核心概念是“Support Vector”。以下属于个人胡诌所谓支持向量机，就是一个分类器就。它以Support Vector为基础，找到一个能分割数据点得到超平面。其中Support Vector一般来说是数据点中的一部分，超平面的确定只与Support Vector有关，与其他数据点无关。支持">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28ly1fnt2207bsgj207y04wdfo.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28gy1fnlds2odulj20pm0mkglj.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28gy1fnmiwutwjkj21430rjnhn.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28gy1fnlds2odulj20pm0mkglj.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28gy1fnlds2odulj20pm0mkglj.jpg">
-<meta property="og:updated_time" content="2018-01-25T10:55:02.582Z">
+<meta property="og:updated_time" content="2018-01-25T11:05:44.600Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SVM的非学术性描述（1）">
-<meta name="twitter:description" content="概念SVM（Support Vector Machine）: 支持向量机这个名字看上去挺吓人的，里面的核心概念是“Support Vector”。以下属于个人胡诌所谓支持向量机，就是一个分类器就。它以Support Vector为基础，找到一个能分割数据点得到超平面。其中Support Vector一般来说是数据点中的一部分，超平面的确定只与Support Vector有关，与其他数据点无关。支持">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/48799a28gy1fnlds2odulj20pm0mkglj.jpg">
+<meta name="twitter:title" content="闲话SVM（一）">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/48799a28ly1fnt2207bsgj207y04wdfo.jpg">
 
 
 
@@ -130,7 +129,7 @@
 
 
 
-  <title>SVM的非学术性描述（1） | 6 months for a job</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>闲话SVM（一） | 6 months for a job</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -274,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">SVM的非学术性描述（1）</h1>
+          <h1 class="post-title" itemprop="name headline">闲话SVM（一）</h1>
         
 
         <div class="post-meta">
@@ -297,6 +296,39 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tswc.github.io/categories/machine-learning/" itemprop="url" rel="index">
+                    <span itemprop="name">machine learning</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/tswc.github.io/categories/machine-learning/basic/" itemprop="url" rel="index">
+                    <span itemprop="name">basic</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -304,7 +336,7 @@
 
           
           
-             <span id="/tswc.github.io/2018/01/18/SVM-1/" class="leancloud_visitors" data-flag-title="SVM的非学术性描述（1）">
+             <span id="/tswc.github.io/2018/01/18/SVM-1/" class="leancloud_visitors" data-flag-title="闲话SVM（一）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -337,7 +369,8 @@
       
 
       
-        <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a><font color="#000080">概念</font></h1><p><strong><font size="4" color="#000080">SVM（Support Vector Machine）: 支持向量机</font></strong><br>这个名字看上去挺吓人的，里面的<strong>核心概念是“Support Vector”</strong>。<br><strong><font size="3" color="#A52A2A">以下属于个人胡诌</font></strong><br>所谓支持向量机，就是一个分类器就。它以Support Vector为基础，找到一个能分割数据点得到超平面。其中Support Vector一般来说是数据点中的一部分，超平面的确定只与Support Vector有关，与其他数据点无关。<br>支持向量机与普通分类器的区别:<br><strong>支持向量机：</strong><br>&emsp;&emsp;&emsp;&emsp;&emsp;关心少数点，要求作为支持向量的数据点距离分割面的距离尽可能大。<br>&emsp;&emsp;&emsp;&emsp;&emsp;对于除支持向量以外的点完全不考虑。<br><strong>普通分类器：</strong><br>&emsp;&emsp;&emsp;&emsp;&emsp;只要正确分类即可，不考虑每个点距离分割面的距离。<br>&emsp;&emsp;&emsp;&emsp;&emsp;考虑所以的数据点。</p>
+        <p><img src="http://ww1.sinaimg.cn/large/48799a28ly1fnt2207bsgj207y04wdfo.jpg" width="600" height="600"><br><a id="more"></a></p>
+<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a><font color="#000080">概念</font></h1><p><strong><font size="4" color="#000080">SVM（Support Vector Machine）: 支持向量机</font></strong><br>这个名字看上去挺吓人的，里面的<strong>核心概念是“Support Vector”</strong>。<br><strong><font size="3" color="#A52A2A">以下属于个人胡诌</font></strong><br>所谓支持向量机，就是一个分类器就。它以Support Vector为基础，找到一个能分割数据点得到超平面。其中Support Vector一般来说是数据点中的一部分，超平面的确定只与Support Vector有关，与其他数据点无关。<br>支持向量机与普通分类器的区别:<br><strong>支持向量机：</strong><br>&emsp;&emsp;&emsp;&emsp;&emsp;关心少数点，要求作为支持向量的数据点距离分割面的距离尽可能大。<br>&emsp;&emsp;&emsp;&emsp;&emsp;对于除支持向量以外的点完全不考虑。<br><strong>普通分类器：</strong><br>&emsp;&emsp;&emsp;&emsp;&emsp;只要正确分类即可，不考虑每个点距离分割面的距离。<br>&emsp;&emsp;&emsp;&emsp;&emsp;考虑所以的数据点。</p>
 <hr>
 <h1 id="过程"><a href="#过程" class="headerlink" title="过程"></a><font color="#000080">过程</font></h1><p><img src="http://ww1.sinaimg.cn/large/48799a28gy1fnlds2odulj20pm0mkglj.jpg" width="500" height="500"></p>
 <p>如图，$WX+b=0$描绘一个能够分类的超平面。<br><br><br>在这幅图里，我们真正关心的是点到分界面的距离。</p>
@@ -347,7 +380,7 @@
 \mathop{max}\limits_{w,b} \frac {\hat\gamma} {||w||} \\
  s.t. y_i(w^Tx_i+b) = \hat\gamma_i \ge \hat\gamma \\
 \hat\gamma = wx+b</script><p>在这组方程中，式2.1表示我们要求出$w,b$能最大化数据点到超平面的距离，式2.2表示对最大化距离的约束，要求所有数据点到超平面的距离都大于我们求得的距离，式2.3表示我们式中的$\gamma$是由别的式子求得。</p>
-<h2 id="疑点1：为什么会有margin-1"><a href="#疑点1：为什么会有margin-1" class="headerlink" title="疑点1：为什么会有margin=1?"></a>疑点1：为什么会有margin=1?</h2><div>
+<h2 id="疑点1：为什么会有margin-1"><a href="#疑点1：为什么会有margin-1" class="headerlink" title="疑点1：为什么会有margin=1?"></a><font color="#000080">疑点1：为什么会有margin=1?</font></h2><div>
 <ul>
 <li style="float:left;border:solid 1px 000;margin:2px;;"><img src="http://ww1.sinaimg.cn/large/48799a28gy1fnlds2odulj20pm0mkglj.jpg" width="400" height="400"></li>
 
@@ -360,7 +393,7 @@
 那么问题来了，如果给你这两个图，让你做分类，结果一样么？ </div><br>答案一定是肯定的：一样啊！（你逗我呢？你以为你长胖了我就不认识你了？明明就是同一组数据，我才不要再重复分一遍呢！）<br>这个事情的根源在于：</p>
 <script type="math/tex; mode=display">WX+b=0</script><p>用来表示分界线的式子可以任意放缩，因为右边是0。也就是说$\alpha WX+\alpha b=0$和原式代表的直线是完全相同的。<br>为什么会这样？因为对于坐标系中的一条直线，我关心的其实不是绝对的值，而是相对的。也就是说如果这里$X = [X_1,X_2]$，那么我们确定这条直线角度的方式实际上是找到$\frac{W_1}{W_2}$（b是确定偏差的，但是直线的角度是最重要的）。那么当$W_1,W_2$进行等比例缩放的时候，完全不影响直线方向，再加上b也进行了等比例缩放，那么连直线的位置也不会被改变了。<br>那么对式2.2进行处理，令$W’=\hat \gamma W, b = \hat \gamma b$,原式就变成了</p>
 <script type="math/tex; mode=display">\mathop{max}\limits_{w’,b’} \frac {1} {||w’||} \\ s.t. y_i({w’}^Tx_i+b’) \ge 1</script><p>之所以这么做仅仅是因为这样有利于后续计算，属于数学手段，<strong><font color="red">当然在物理意义是可以理解的，就像上面两幅图，等比例的放缩并不影响分类的过程。</font></strong></p>
-<h2 id="疑点2：拉格朗日乘子法是什么？"><a href="#疑点2：拉格朗日乘子法是什么？" class="headerlink" title="疑点2：拉格朗日乘子法是什么？"></a>疑点2：拉格朗日乘子法是什么？</h2><p>将原式</p>
+<h2 id="疑点2：拉格朗日乘子法是什么？"><a href="#疑点2：拉格朗日乘子法是什么？" class="headerlink" title="疑点2：拉格朗日乘子法是什么？"></a><font color="#000080">疑点2：拉格朗日乘子法是什么？</font></h2><p>将原式</p>
 <script type="math/tex; mode=display">min \frac {1} {2}||w||^2 \\ s.t. y_i({w’}^Tx_i+b’) \ge 1,i=1,2,..,m</script><p>用拉格朗日乘子法的方法来解，目的是将约束用数学的运算来表达。</p>
 <script type="math/tex; mode=display">\mathcal{L}(w,b,\alpha)=\frac {1} {2}||w||^2 - \sum_{i=1}^n \alpha_i(y_i(w^Tx_i+b)-1)</script><p>我们可以将原问题转化为：</p>
 <script type="math/tex; mode=display">\mathop{min}\limits_{w,b} \mathop{max}\limits_{\alpha_i \ge 0}\mathcal{L}(w,b,\alpha)</script><p>为什么这里可以这么转换？结果真的和原问题相同么？<br>首先我们看<script type="math/tex">\mathop{max}\limits_{\alpha_i \ge 0}\mathcal{L}(w,b,\alpha)</script>，如果不满足条件，那么$ y_i({w’}^Tx_i+b’) -1&lt; 0$，那么当$\alpha$取$\infty$原式也会趋近于$\infty$，如果满足条件，也就是$ y_i({w’}^Tx_i+b’) -1\ge 0$，那么要想这个式子取得最大值，只能让$\alpha=0$，或者$ y_i({w’}^Tx_i+b’) -1=0$，所以</p>
@@ -377,7 +410,7 @@
 <p><strong><font color="red">物理意义</font></strong><br>我们刚刚从数学公式上理解了上面的变换，上式也包含了深刻的物理意义。<br>$\mathcal{L}(w,b,\alpha)$包含两部分，第一部分是$\frac {1} {2}||w||^2$,可以看出这一部分和数据集毫无关系，因为不涉及到$x,y$。</p>
 <p>第二部分是$\sum_{i=1}^n \alpha_i(y_i(w^Tx_i+b)-1)$， 对于$\alpha_i(y_i(w^Tx_i+b)-1)$ ,要满足 $ \mathop{max}\limits_{\alpha_i \ge 0}\mathcal{L}(w,b,\alpha)$，就是要$\alpha_i(y_i(w^Tx_i+b)-1)$。<br>在林轩田老师的课里，林老师把$\alpha$和$y_i(w^Tx_i+b)-1$比作哈利波特和伏地魔，意思就是必须有个得死，要不然剧情就进行不下去了。“死”的意思这里就是“=0”。<br>当$y_i(w^Tx_i+b)-1=0$时，代表这个点是支持向量，所以$\alpha \neq 0$，这表示我在做这个优化问题的时候考虑了这个点。<br>当$y_i(w^Tx_i+b)-1&gt;0$时，代表这个点不是支持向量，所以$\alpha=0$，也就是说不考虑这个点。<br><strong><font color="red">这也就是SVM一个十分重要的性质，少数的支持向量决定了分界面的位置，改变其余点不会影响分类的结果。</font></strong></p>
 <p>机器学习技法中对朗格朗日乘子法的讲解:<a href="https://www.youtube.com/watch?v=VUp-17l03lk&list=PLXVfgk9fNX2IQOYPmqjqWsNUFl2kpk1U2&index=6" target="*blank" rel="noopener">朗格朗日乘子法——-机器学习技法</a><br>一篇关于拉格朗日乘子法和KKT的介绍:<a href="http://www.cnblogs.com/mo-wang/p/4775548.html](http://www.cnblogs.com/mo-wang/p/4775548.html)" target="*blank" rel="noopener">关于朗格朗日乘子法</a></p>
-<h2 id="疑点3：拉格朗日对偶是什么？"><a href="#疑点3：拉格朗日对偶是什么？" class="headerlink" title="疑点3：拉格朗日对偶是什么？"></a>疑点3：拉格朗日对偶是什么？</h2><script type="math/tex; mode=display">\mathop{min}\limits_{w,b} \mathop{max}\limits_{\alpha_i \ge 0}\mathcal{L}(w,b,\alpha) \ge \mathop{max}\limits_{\alpha_i \ge 0} \mathop{min}\limits_{w,b} \mathcal{L}(w,b,\alpha)</script><p>关于这里的解释是，最大值中的最小值会大于最小值中的最大值，这个概念类似于：将军中的矮子总得比矮子中的将军高吧？<br>用数学里的术语解释是，左右两边是个弱对偶。当满足强对偶条件时，等式两边可以取等号。<br>这里说说吧，因为数学氛围比较重，确实有点吃力，而且大多数书里也不怎么解释这里。</p>
+<h2 id="疑点3：拉格朗日对偶是什么？"><a href="#疑点3：拉格朗日对偶是什么？" class="headerlink" title="疑点3：拉格朗日对偶是什么？"></a><font color="#000080">疑点3：拉格朗日对偶是什么？</font></h2><script type="math/tex; mode=display">\mathop{min}\limits_{w,b} \mathop{max}\limits_{\alpha_i \ge 0}\mathcal{L}(w,b,\alpha) \ge \mathop{max}\limits_{\alpha_i \ge 0} \mathop{min}\limits_{w,b} \mathcal{L}(w,b,\alpha)</script><p>关于这里的解释是，最大值中的最小值会大于最小值中的最大值，这个概念类似于：将军中的矮子总得比矮子中的将军高吧？<br>用数学里的术语解释是，左右两边是个弱对偶。当满足强对偶条件时，等式两边可以取等号。<br>这里说说吧，因为数学氛围比较重，确实有点吃力，而且大多数书里也不怎么解释这里。</p>
 <p>原来的式子是这样的</p>
 <script type="math/tex; mode=display">\mathcal{L}(w,b,\alpha)=\frac {1} {2}||w||^2 + \sum_{i=1}^n \alpha_i(1-y_i(w^Tx_i+b))</script><p>写成</p>
 <script type="math/tex; mode=display">\mathcal{L}(x,\alpha)=f(x) + \sum_{i=1}^n \alpha_i g_i(x)\\
@@ -429,7 +462,7 @@ s.t. \alpha \ge 0\\
     \alpha g(x) = 0\\
     g(x) \le 0</script><p>这里的所谓的对偶，把max和min的顺序调换了一下，以求让求解更加简单。</p>
 <p>这里具体讲解了KKT：<a href="http://www.cnblogs.com/zhangchaoyang/articles/2726873.html" target="*blank" rel="noopener">KKT讲解</a></p>
-<h2 id="求解"><a href="#求解" class="headerlink" title="求解"></a>求解</h2><p>解决完这三个问题，对于基本SVM的推导上，差不多算是扫清了难点。<br>我们首先看</p>
+<h2 id="求解"><a href="#求解" class="headerlink" title=" 求解"></a><font color="#000080"> 求解</font></h2><p>解决完这三个问题，对于基本SVM的推导上，差不多算是扫清了难点。<br>我们首先看</p>
 <script type="math/tex; mode=display">
 \mathop{min}\limits_{x} \mathcal{L}(x,\alpha)</script><p>凸优化问题，不多说直先求导</p>
 <script type="math/tex; mode=display">
@@ -442,7 +475,7 @@ s.t. \alpha \ge 0\\
 s.t. \alpha>0   \\
 \sum_{i=1}^n \alpha_i y_i=0</script><p>最终的求解会运用SMO算法，本文暂时不对这个算法进行具体讲解。<br>关于SMO算法的两篇讲解文：<br><a href="http://www.cnblogs.com/jerrylead/archive/2011/03/18/1988419.html" target="*blank" rel="noopener">SMO讲解——JerryLead</a><br><a href="http://blog.csdn.net/shijing_0214/article/details/51017029" target="*blank" rel="noopener">SMO讲解</a></p>
 <p>写到这里，对于基本支持向量机，也就是硬间隔支持向量机的定义和推导告一段落，现在，我们回顾一下我们如何一步步走到这里。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ol>
+<h1 id="总结"><a href="#总结" class="headerlink" title=" 总结"></a><font color="#000080"> 总结</font></h1><ol>
 <li>有个分类，或者可以当作分类的回归问题</li>
 <li>将每个样本在坐标系中表示，坐标轴对应样本的Features</li>
 <li>用最基本的线性方程$WX+b=0$来定义超平面，设定目标为：超平面能将不同类的点分隔开来</li>
@@ -481,6 +514,14 @@ s.t. \alpha>0   \\
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tswc.github.io/tags/machine-learning/" rel="tag"># machine learning</a>
+          
+            <a href="/tswc.github.io/tags/math/" rel="tag"># math</a>
+          
+        </div>
       
 
       
@@ -680,7 +721,7 @@ show_date_time();
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#过程"><span class="nav-number">2.</span> <span class="nav-text">过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#疑点1：为什么会有margin-1"><span class="nav-number">2.1.</span> <span class="nav-text">疑点1：为什么会有margin=1?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#疑点2：拉格朗日乘子法是什么？"><span class="nav-number">2.2.</span> <span class="nav-text">疑点2：拉格朗日乘子法是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#疑点3：拉格朗日对偶是什么？"><span class="nav-number">2.3.</span> <span class="nav-text">疑点3：拉格朗日对偶是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求解"><span class="nav-number">2.4.</span> <span class="nav-text">求解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#过程"><span class="nav-number">2.</span> <span class="nav-text">过程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#疑点1：为什么会有margin-1"><span class="nav-number">2.1.</span> <span class="nav-text">疑点1：为什么会有margin=1?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#疑点2：拉格朗日乘子法是什么？"><span class="nav-number">2.2.</span> <span class="nav-text">疑点2：拉格朗日乘子法是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#疑点3：拉格朗日对偶是什么？"><span class="nav-number">2.3.</span> <span class="nav-text">疑点3：拉格朗日对偶是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#求解"><span class="nav-number">2.4.</span> <span class="nav-text"> 求解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text"> 总结</span></a></li></ol></div>
             
 
           </div>
