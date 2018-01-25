@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="6 months for a job">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28gy1fnioxzp2g8j20u00gojuz.jpg">
-<meta property="og:updated_time" content="2018-01-18T10:58:12.646Z">
+<meta property="og:updated_time" content="2018-01-25T15:12:21.737Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="极大似然vs最大后验">
 <meta name="twitter:image" content="http://ww1.sinaimg.cn/large/48799a28gy1fnioxzp2g8j20u00gojuz.jpg">
@@ -371,8 +371,7 @@
 <p><center> a在$(0,10]$上平均分布 </center><br>这里就是一个统计。我们知道个体出现的概率，问你整体的分布或者说模型是怎么样的。</p>
 <p>总的来说就是，<br><strong>概率是已知模型，用模型（方程）来计算概率。</strong><br><strong>统计是已知概率，用概率来推算模型（方程）。</strong><br>对于机器学习领域来说，我们一般的流程是收集数据，希望通过已知的数据来学习规律，也就是推算出模型，用模型来处理未知的数据。<br>本文所侧重的极大似然和最大后验都属于统计的范畴。</p>
 <h1 id="贝叶斯"><a href="#贝叶斯" class="headerlink" title="贝叶斯"></a>贝叶斯</h1><p>先看看贝叶斯公式</p>
-<script type="math/tex; mode=display">P(A|B) = \frac{P(A,B)}{P(B)}   \tag{1.1}</script><script type="math/tex; mode=display">P(A|B) = \frac{P(B|A)P(A)}{P(B)}    \tag{1.2}</script><font color="red"><center>**贝叶斯公式就是在描述，你有多大把握能相信一件证据？（how much you can trust the evidence）**</center></font>
-
+<script type="math/tex; mode=display">P(A|B) = \frac{P(A,B)}{P(B)}   \tag{1.1}</script><script type="math/tex; mode=display">P(A|B) = \frac{P(B|A)P(A)}{P(B)}    \tag{1.2}</script><p><strong><font color="red"><center>贝叶斯公式就是在描述，你有多大把握能相信一件证据？（how much you can trust the evidence）</center></font></strong></p>
 <p>这句话说的有点直击灵魂，棒！</p>
 <h2 id="例1【汽车被砸与警报器】"><a href="#例1【汽车被砸与警报器】" class="headerlink" title="例1【汽车被砸与警报器】"></a>例1【汽车被砸与警报器】</h2><p>引用从<a href="http://blog.csdn.net/u011508640/article/details/72815981" target="_blank" rel="noopener">http://blog.csdn.net/u011508640/article/details/72815981</a>里看到的解释这份公式例子，十分通俗易懂。</p>
 <p>$P(A|B)$表示B事件发生的情况下，A事件发生的概率，也就是说如果B发生了，我们有多大把握A事件也发生。<br>想想这个情况。一辆汽车（或者电瓶车）的警报响了，你通常是什么反应？有小偷？撞车了？ 不。。 你通常什么反应都没有。因为汽车警报响一响实在是太正常了！每天都要发生好多次。本来，汽车警报设置的功能是，出现了异常情况，需要人关注。然而，由于虚警实在是太多，人们渐渐不相信警报的功能了。</p>
@@ -381,7 +380,7 @@
 <p><strong>做事之前，要综合考虑所以的可能性</strong></p>
 <p>当考虑$P(A|B)$时，即使$P(B|A)$很大，若是$P(A)$很小，$P(A|B)$还是很难变得较大，因为虽然A与B联系很紧，但是A的先验概率过小。</p>
 <p>从这个角度思考贝叶斯公式：一个本来就难以发生的事情，就算出现某个证据和他强烈相关，也要谨慎。证据很可能来自别的虽然不是很相关，但发生概率较高的事情。 发现刚才写的代码编译报错，可是我今天状态特别好，这语言我也很熟悉，犯错的概率很低。因此觉得是编译器出错了。 ————别，还是先再检查下自己的代码吧。</p>
-<h1 id="似然-amp-后验"><a href="#似然-amp-后验" class="headerlink" title="似然&amp;后验"></a>似然&amp;后验</h1><p>似然: $P(X|\theta)$<br>对于似然函数求解的问题，一般来说模型确定，但是参数未知，通过实验得到一组数据要我们来估计模型参数。其中X就是实验得到的数据，$\theta$就是我们要估计的参数。<br>$P(X|\theta)$表示的是在已知模型中，当参数为$\theta$时，X发生的概率。很自然的，我们要使这件事发生的概率最大，这就是我们求$\theta$的标准。</p>
+<h1 id="似然-amp-后验"><a href="#似然-amp-后验" class="headerlink" title="似然&amp;后验"></a>似然&amp;后验</h1><p>似然: $P(X|\theta)$=$P(X;\theta)$<br>对于似然函数求解的问题，一般来说模型确定，但是参数未知，通过实验得到一组数据要我们来估计模型参数。其中X就是实验得到的数据，$\theta$就是我们要估计的参数。<br>$P(X|\theta)$表示的是在已知模型中，当参数为$\theta$时，X发生的概率。很自然的，我们要使这件事发生的概率最大，这就是我们求$\theta$的标准。</p>
 <script type="math/tex; mode=display">\theta_{MLE} = \mathop{\rm arg\,max}\limits_{\theta} P(X;\theta)</script><p>对于这个式子中的分号，到底和表示条件概率的竖线有什么区别，这里有解释<br><a href="http://blog.csdn.net/pipisorry/article/details/42715245" target="_blank" rel="noopener">http://blog.csdn.net/pipisorry/article/details/42715245</a><br><strong>这里想想$P(X|\theta)$和$P(X;\theta)$的区别在哪？</strong><br>（关于这个问题想了很久，下面是纯粹个人想法，不保证正确）<br>出现”|”时，其实表示的条件概率，等价于$P(X,\theta)/P(\theta)$；出现”;”时，其实表示的是X的概率，只不过告诉我们有一个参数是$\theta$，等价于$P(X)$。<br>分歧点就在$\theta$上，$\theta$到底是不是一个随机变量？<br>如果我们将$P(X|\theta)$理解为条件概率，不考虑上面链接中说的等价情况。$P(X;\theta)$认为，$\theta$未知但确定，不存在概率的问题，只是具体的值需要听过上面的式子求得。或者说，我们对$\theta$不存在任何先验知识，所以不考虑$\theta$的分布情况，任何的$\theta$值对我们来说都是等价的。</p>
 <p>后验:$P(X|\theta)P(\theta)$<br>几乎所以关于后验概率的解释都是</p>
 <script type="math/tex; mode=display">
