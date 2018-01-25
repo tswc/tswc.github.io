@@ -85,15 +85,15 @@
 <meta property="og:url" content="http://tswc.github.io/2018/01/18/SVM-1/index.html">
 <meta property="og:site_name" content="6 months for a job">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28ly1fnt2207bsgj207y04wdfo.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28ly1fnt2a78i1tj20sw0e4acr.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28gy1fnlds2odulj20pm0mkglj.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28gy1fnmiwutwjkj21430rjnhn.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28gy1fnlds2odulj20pm0mkglj.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28gy1fnlds2odulj20pm0mkglj.jpg">
-<meta property="og:updated_time" content="2018-01-25T11:07:07.486Z">
+<meta property="og:updated_time" content="2018-01-25T11:17:34.972Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="什么是SVM（一）">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/48799a28ly1fnt2207bsgj207y04wdfo.jpg">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/48799a28ly1fnt2a78i1tj20sw0e4acr.jpg">
 
 
 
@@ -369,7 +369,7 @@
       
 
       
-        <p><img src="http://ww1.sinaimg.cn/large/48799a28ly1fnt2207bsgj207y04wdfo.jpg" width="600" height="600"><br><a id="more"></a></p>
+        <p><img src="http://ww1.sinaimg.cn/large/48799a28ly1fnt2a78i1tj20sw0e4acr.jpg" width="600" height="600"><br><a id="more"></a></p>
 <h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a><font color="#000080">概念</font></h1><p><strong><font size="4" color="#000080">SVM（Support Vector Machine）: 支持向量机</font></strong><br>这个名字看上去挺吓人的，里面的<strong>核心概念是“Support Vector”</strong>。<br><strong><font size="3" color="#A52A2A">以下属于个人胡诌</font></strong><br>所谓支持向量机，就是一个分类器就。它以Support Vector为基础，找到一个能分割数据点得到超平面。其中Support Vector一般来说是数据点中的一部分，超平面的确定只与Support Vector有关，与其他数据点无关。<br>支持向量机与普通分类器的区别:<br><strong>支持向量机：</strong><br>&emsp;&emsp;&emsp;&emsp;&emsp;关心少数点，要求作为支持向量的数据点距离分割面的距离尽可能大。<br>&emsp;&emsp;&emsp;&emsp;&emsp;对于除支持向量以外的点完全不考虑。<br><strong>普通分类器：</strong><br>&emsp;&emsp;&emsp;&emsp;&emsp;只要正确分类即可，不考虑每个点距离分割面的距离。<br>&emsp;&emsp;&emsp;&emsp;&emsp;考虑所以的数据点。</p>
 <hr>
 <h1 id="过程"><a href="#过程" class="headerlink" title="过程"></a><font color="#000080">过程</font></h1><p><img src="http://ww1.sinaimg.cn/large/48799a28gy1fnlds2odulj20pm0mkglj.jpg" width="500" height="500"></p>
@@ -392,7 +392,7 @@
 让我们看一下上图，明眼人当然可以发现这两张完全就是一张图，笔者也就是粗暴的把这两张图放缩了一下。但是几何距离确确实实改变了。
 那么问题来了，如果给你这两个图，让你做分类，结果一样么？ </div><br>答案一定是肯定的：一样啊！（你逗我呢？你以为你长胖了我就不认识你了？明明就是同一组数据，我才不要再重复分一遍呢！）<br>这个事情的根源在于：</p>
 <script type="math/tex; mode=display">WX+b=0</script><p>用来表示分界线的式子可以任意放缩，因为右边是0。也就是说$\alpha WX+\alpha b=0$和原式代表的直线是完全相同的。<br>为什么会这样？因为对于坐标系中的一条直线，我关心的其实不是绝对的值，而是相对的。也就是说如果这里$X = [X_1,X_2]$，那么我们确定这条直线角度的方式实际上是找到$\frac{W_1}{W_2}$（b是确定偏差的，但是直线的角度是最重要的）。那么当$W_1,W_2$进行等比例缩放的时候，完全不影响直线方向，再加上b也进行了等比例缩放，那么连直线的位置也不会被改变了。<br>那么对式2.2进行处理，令$W’=\hat \gamma W, b = \hat \gamma b$,原式就变成了</p>
-<script type="math/tex; mode=display">\mathop{max}\limits_{w’,b’} \frac {1} {||w’||} \\ s.t. y_i({w’}^Tx_i+b’) \ge 1</script><p>之所以这么做仅仅是因为这样有利于后续计算，属于数学手段，<strong><font color="red">当然在物理意义是可以理解的，就像上面两幅图，等比例的放缩并不影响分类的过程。</font></strong></p>
+<script type="math/tex; mode=display">\mathop{max}\limits_{w’,b’} \frac {1} {||w’||} \\ s.t. y_i({w’}^Tx_i+b’) \ge 1</script><p>之所以这么做仅仅是因为这样有利于后续计算，属于数学手段，<strong><font color="red">在物理意义上，就像上面两幅图，等比例的放缩并不影响分类的过程。</font></strong></p>
 <h2 id="疑点2：拉格朗日乘子法是什么？"><a href="#疑点2：拉格朗日乘子法是什么？" class="headerlink" title="疑点2：拉格朗日乘子法是什么？"></a><font color="#000080">疑点2：拉格朗日乘子法是什么？</font></h2><p>将原式</p>
 <script type="math/tex; mode=display">min \frac {1} {2}||w||^2 \\ s.t. y_i({w’}^Tx_i+b’) \ge 1,i=1,2,..,m</script><p>用拉格朗日乘子法的方法来解，目的是将约束用数学的运算来表达。</p>
 <script type="math/tex; mode=display">\mathcal{L}(w,b,\alpha)=\frac {1} {2}||w||^2 - \sum_{i=1}^n \alpha_i(y_i(w^Tx_i+b)-1)</script><p>我们可以将原问题转化为：</p>
@@ -421,9 +421,9 @@ s.t. \alpha_i \ge 0, g_i(x) \le 0 \tag{3.3.1}</script><p>由式3.3.1可得$\alph
 <script type="math/tex; mode=display">
 \mathop{max}\limits_{\alpha_i \ge 0}\mathop{min}\limits_{x}\mathcal{L}(x,\alpha)\\
 = \mathop{max}\limits_{\alpha_i \ge 0}[\mathop{min}\limits_{x}f(x)+\mathop{min}\limits_{x}\alpha g(x)]\\
-= \mathop{min}\limits_{x}f(x)+\mathop{max}\limits_{\alpha_i \ge 0}\mathop{min}\limits_{x}\alpha g(x)</script><p>我们目的是要让这个式子成立，</p>
+= \mathop{min}\limits_{x}f(x)+\mathop{max}\limits_{\alpha_i \ge 0}\mathop{min}\limits_{x}\alpha g(x)</script><p>我们目的是要让下面这个式子成立，</p>
 <script type="math/tex; mode=display">
-\mathop{max}\limits_{\alpha_i \ge 0}\mathop{min}\limits_{x}\mathcal{L}(x,\alpha) = \mathop{min}\limits_{x}f(x)</script><p>也就是说</p>
+\mathop{max}\limits_{\alpha_i \ge 0}\mathop{min}\limits_{x}\mathcal{L}(x,\alpha) = \mathop{min}\limits_{x}f(x)</script><p>也就是说希望$\mathop{max}\limits_{\alpha_i \ge 0}\mathop{min}\limits_{x}\alpha g(x)=0$，那么</p>
 <script type="math/tex; mode=display">
 \begin{equation}  
 \left .
@@ -448,7 +448,7 @@ s.t. \alpha_i \ge 0, g_i(x) \le 0 \tag{3.3.1}</script><p>由式3.3.1可得$\alph
 \begin{equation}  
 \left .
         \begin{array}{lr}  
-             \alpha=0 \\ g(x)=0 
+             \alpha=0 \\or\\ g(x)=0 
         \end{array}  
 \right \}=>
 \mathop{max}\limits_{\alpha_i \ge 0}\mathop{min}\limits_{x} \mathcal{L}(x,\alpha) = 
