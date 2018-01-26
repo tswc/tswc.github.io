@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="统计,机器学习,贝叶斯,似然,后验" />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,17 +79,21 @@
 
 
 
-<meta name="keywords" content="统计,机器学习,贝叶斯,似然,后验">
+<meta name="description" content="Traditional Gradient Descent最基本的优化方法，在函数的每个位置，沿着梯度下降的方向进行不断迭代，直到达到一个点，这个点的各个方向上的导数均小于等于0。$\theta = \theta - \eta \cdot \nabla_\theta J( \theta)\tag{1.1}$这是梯度下降算法最基本的形式，我这里就不做过多解释。下面先说梯度下降算法的三种形式 Batc">
 <meta property="og:type" content="article">
-<meta property="og:title" content="极大似然vs最大后验">
-<meta property="og:url" content="http://tswc.github.io/2018/01/10/statistic/index.html">
+<meta property="og:title" content="Optimization(1)">
+<meta property="og:url" content="http://tswc.github.io/2018/01/24/Optimization/index.html">
 <meta property="og:site_name" content="6 months for a job">
+<meta property="og:description" content="Traditional Gradient Descent最基本的优化方法，在函数的每个位置，沿着梯度下降的方向进行不断迭代，直到达到一个点，这个点的各个方向上的导数均小于等于0。$\theta = \theta - \eta \cdot \nabla_\theta J( \theta)\tag{1.1}$这是梯度下降算法最基本的形式，我这里就不做过多解释。下面先说梯度下降算法的三种形式 Batc">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28gy1fnioxzp2g8j20u00gojuz.jpg">
-<meta property="og:updated_time" content="2018-01-25T15:39:48.612Z">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28ly1fnsd1qvc2jj20ra0fj78k.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28ly1fnsd23w7mgj20qz0fgq9n.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28ly1fnsakug1xkj20j10j141l.jpg">
+<meta property="og:updated_time" content="2018-01-26T19:21:11.280Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="极大似然vs最大后验">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/48799a28gy1fnioxzp2g8j20u00gojuz.jpg">
+<meta name="twitter:title" content="Optimization(1)">
+<meta name="twitter:description" content="Traditional Gradient Descent最基本的优化方法，在函数的每个位置，沿着梯度下降的方向进行不断迭代，直到达到一个点，这个点的各个方向上的导数均小于等于0。$\theta = \theta - \eta \cdot \nabla_\theta J( \theta)\tag{1.1}$这是梯度下降算法最基本的形式，我这里就不做过多解释。下面先说梯度下降算法的三种形式 Batc">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/48799a28ly1fnsd1qvc2jj20ra0fj78k.jpg">
 
 
 
@@ -119,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://tswc.github.io/2018/01/10/statistic/"/>
+  <link rel="canonical" href="http://tswc.github.io/2018/01/24/Optimization/"/>
 
 
 
 
 
-  <title>极大似然vs最大后验 | 6 months for a job</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>Optimization(1) | 6 months for a job</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -252,7 +256,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://tswc.github.io/tswc.github.io/2018/01/10/statistic/">
+    <link itemprop="mainEntityOfPage" href="http://tswc.github.io/tswc.github.io/2018/01/24/Optimization/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jian Tang">
@@ -269,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">极大似然vs最大后验</h1>
+          <h1 class="post-title" itemprop="name headline">Optimization(1)</h1>
         
 
         <div class="post-meta">
@@ -281,8 +285,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T09:46:44+01:00">
-                2018-01-10
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-24T10:36:29+01:00">
+                2018-01-24
               </time>
             
 
@@ -292,39 +296,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tswc.github.io/categories/machine-learning/" itemprop="url" rel="index">
-                    <span itemprop="name">machine learning</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/tswc.github.io/categories/machine-learning/basic/" itemprop="url" rel="index">
-                    <span itemprop="name">basic</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -333,9 +304,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/tswc.github.io/2018/01/10/statistic/#comments" itemprop="discussionUrl">
+                <a href="/tswc.github.io/2018/01/24/Optimization/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/01/10/statistic/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/01/24/Optimization/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -343,7 +314,7 @@
 
           
           
-             <span id="/tswc.github.io/2018/01/10/statistic/" class="leancloud_visitors" data-flag-title="极大似然vs最大后验">
+             <span id="/tswc.github.io/2018/01/24/Optimization/" class="leancloud_visitors" data-flag-title="Optimization(1)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -370,7 +341,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,051 字
+                  1,083 字
                 </span>
               
 
@@ -386,7 +357,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  7 分钟
+                  4 分钟
                 </span>
               
             </div>
@@ -407,34 +378,75 @@
       
 
       
-        <p><img src="http://ww1.sinaimg.cn/large/48799a28gy1fnioxzp2g8j20u00gojuz.jpg" width="600" height="600" align="center/"><br><a id="more"></a></p>
-<h1 id="概率和统计"><a href="#概率和统计" class="headerlink" title="概率和统计"></a>概率和统计</h1><p>概率和统计通常被我们放在一起，虽然有联系，但它们的实际含义其实截然相反。<br><strong>概率</strong>：我们不知道具体的数据，但是我有数据的模型。<br>比如说，我告诉你，a是一个整数，在$ (0,10] $平均分布。$a=3$的概率是多少? </p>
-<script type="math/tex; mode=display">P(a=3)=1/10</script><p>这里就是一个概率。 已知整体的分布，问你个体的概率。<br><strong>统计</strong>：我们知道数据的出现概率，但是没有数据模型的知识。<br>现在，我告诉你，$a\in(0,10]$ &amp; a is N，且a是0到9的概率均为$1/10$。a是怎么分布的。</p>
-<p><center> a在$(0,10]$上平均分布 </center><br>这里就是一个统计。我们知道个体出现的概率，问你整体的分布或者说模型是怎么样的。</p>
-<p>总的来说就是，<br><strong>概率是已知模型，用模型（方程）来计算概率。</strong><br><strong>统计是已知概率，用概率来推算模型（方程）。</strong><br>对于机器学习领域来说，我们一般的流程是收集数据，希望通过已知的数据来学习规律，也就是推算出模型，用模型来处理未知的数据。<br>本文所侧重的极大似然和最大后验都属于统计的范畴。</p>
-<h1 id="贝叶斯"><a href="#贝叶斯" class="headerlink" title="贝叶斯"></a>贝叶斯</h1><p>先看看贝叶斯公式</p>
-<script type="math/tex; mode=display">P(A|B) = \frac{P(A,B)}{P(B)}   \tag{1.1}</script><script type="math/tex; mode=display">P(A|B) = \frac{P(B|A)P(A)}{P(B)}    \tag{1.2}</script><p><strong><font color="red"><center>贝叶斯公式就是在描述，你有多大把握能相信一件证据？（how much you can trust the evidence）</center></font></strong></p>
-<p>这句话说的有点直击灵魂，棒！</p>
-<h2 id="例1【汽车被砸与警报器】"><a href="#例1【汽车被砸与警报器】" class="headerlink" title="例1【汽车被砸与警报器】"></a>例1【汽车被砸与警报器】</h2><p>引用从<a href="http://blog.csdn.net/u011508640/article/details/72815981" target="_blank" rel="noopener">http://blog.csdn.net/u011508640/article/details/72815981</a>里看到的解释这份公式例子，十分通俗易懂。</p>
-<p>$P(A|B)$表示B事件发生的情况下，A事件发生的概率，也就是说如果B发生了，我们有多大把握A事件也发生。<br>想想这个情况。一辆汽车（或者电瓶车）的警报响了，你通常是什么反应？有小偷？撞车了？ 不。。 你通常什么反应都没有。因为汽车警报响一响实在是太正常了！每天都要发生好多次。本来，汽车警报设置的功能是，出现了异常情况，需要人关注。然而，由于虚警实在是太多，人们渐渐不相信警报的功能了。</p>
-<script type="math/tex; mode=display">P(A|B) = \frac{P(B|A)P(A)}{P(B|A)P(A) + P(B|\sim A)P(\sim A)}\tag{1.3}</script><p>我们假设响警报的目的就是想说汽车被砸了。把A计作“汽车被砸了”，B计作“警报响了”，带进贝叶斯公式里看。我们想求等式左边发生A|B的概率，这是在说警报响了，汽车也确实被砸了。汽车被砸引起（trigger）警报响，即B|A。但是，也有可能是汽车被小孩子皮球踢了一下、被行人碰了一下等其他原因（统统计作∼A），其他原因引起汽车警报响了，即B|∼A。那么，现在突然听见警报响了，这时汽车已经被砸了的概率是多少呢（这即是说，警报响这个证据有了，多大把握能相信它确实是在报警说汽车被砸了）？想一想，应当这样来计算。用警报响起、汽车也被砸了这事件的数量，除以响警报事件的数量（这是1.2）。进一步展开，即警报响起、汽车也被砸了的事件的数量，除以警报响起、汽车被砸了的事件数量加上警报响起、汽车没被砸的事件数量（这是1.3）。</p>
-<p>再想想1.3，如果想让$P(A|B)=1$，也就是要将$P(B|\sim A)P(\sim A)$清0，也就是说要么杜绝小孩踢皮球，行人碰到车的可能性，要么就要让警报器在这些例外情况下不工作。这样的话，警报器的可行度大大提升。</p>
-<p><strong>做事之前，要综合考虑所以的可能性</strong></p>
-<p>当考虑$P(A|B)$时，即使$P(B|A)$很大，若是$P(A)$很小，$P(A|B)$还是很难变得较大，因为虽然A与B联系很紧，但是A的先验概率过小。</p>
-<p>从这个角度思考贝叶斯公式：一个本来就难以发生的事情，就算出现某个证据和他强烈相关，也要谨慎。证据很可能来自别的虽然不是很相关，但发生概率较高的事情。 发现刚才写的代码编译报错，可是我今天状态特别好，这语言我也很熟悉，犯错的概率很低。因此觉得是编译器出错了。 ————别，还是先再检查下自己的代码吧。</p>
-<h1 id="似然-amp-后验"><a href="#似然-amp-后验" class="headerlink" title="似然&amp;后验"></a>似然&amp;后验</h1><h2 id="似然-P-X-theta"><a href="#似然-P-X-theta" class="headerlink" title="似然: $P(X|\theta)$"></a>似然: $P(X|\theta)$</h2><p>对于似然函数求解的问题，一般来说模型确定，但是参数未知，通过实验得到一组数据要我们来估计模型参数。其中X就是实验得到的数据，$\theta$就是我们要估计的参数。<br>$P(X|\theta)$表示的是在已知模型中，当参数为$\theta$时，X发生的概率。很自然的，我们要使这件事发生的概率最大，这就是我们求$\theta$的标准。<br>最大似然问题中$P(X|\theta)$表示的不是条件概率，因为$P(\theta)=1$，也就是说$\theta$不是一个随机变量，在这里$P(X|\theta)$等价于$P(X;\theta)$。</p>
-<script type="math/tex; mode=display">\theta_{MLE} = \mathop{\rm arg\,max}\limits_{\theta} P(X;\theta)</script><p>对于这个式子中的分号，到底和表示条件概率的竖线有什么区别，这里有解释<br><a href="http://blog.csdn.net/pipisorry/article/details/42715245" target="_blank" rel="noopener">http://blog.csdn.net/pipisorry/article/details/42715245</a><br><strong>这里想想$P(X|\theta)$和$P(X;\theta)$的区别在哪？</strong><br>（关于这个问题想了很久，下面是纯粹个人想法，不保证正确）<br>出现”|”时，其实表示的条件概率，等价于$P(X,\theta)/P(\theta)$；出现”;”时，其实表示的是X的概率，只不过告诉我们有一个参数是$\theta$，等价于$P(X)$。<br>分歧点就在$\theta$上，$\theta$到底是不是一个随机变量？<br>如果我们将$P(X|\theta)$理解为条件概率，不考虑上面链接中说的等价情况。$P(X;\theta)$认为，$\theta$未知但确定，不存在概率的问题，只是具体的值需要听过上面的式子求得。或者说，我们对$\theta$不存在任何先验知识，所以不考虑$\theta$的分布情况，任何的$\theta$值对我们来说都是等价的。</p>
-<h2 id="后验-P-theta-X"><a href="#后验-P-theta-X" class="headerlink" title="后验:$P(\theta|X)$"></a>后验:$P(\theta|X)$</h2><p>几乎所以关于后验概率的解释都是</p>
-<script type="math/tex; mode=display">
-P(\theta \vert X) = \frac{P(X \vert \theta) P(\theta)}{P(X)} \\
-                  \propto P(X \vert \theta) P(\theta)</script><p>而我在这里的对于后验概率得到想法与这个过程恰恰相反。<br>所谓后验的意义，其实是我们有了先验的知识，所以才有了后验的概念。这个问题中，先验的知识其实就是$P(\theta)$。那么我们在极大似然中所用的$P(X;\theta)$应该写成$P(X|\theta)$，向我们前文中提到的，<strong>“一个本来就难以发生的事情，就算出现某个证据和他强烈相关，也要谨慎。”</strong><br>我们希望最大化X的发生概率，不能仅仅最大化$P(X|\theta)$，因为即使X与$\theta$强烈相关，若是$P(\theta)$自身发生的概率太小，X还是不容易发生。<br>所以要将$P(\theta)$也考虑进去，才能保证X的发生概率。</p>
-<script type="math/tex; mode=display">
-P(X \vert \theta) P(\theta) = \frac{P(X \vert \theta) P(\theta)}{P(X)}
-                        \propto P(\theta \vert X)</script><p>而最大后验这个名字的由来，也就是因为$P(\theta|X)$表示的是已知先验知识$P(X)$的情况下，得到关于$\theta$的概率。</p>
-<p><strong>想法不一定正确，但是结论还是可以保证的</strong><br>对于最大似然和最大后验的理解：两者的分歧点在于对于参数$\theta$的看法，将$\theta$视为未知定值时，是最大似然；将$\theta$视为随机变量时，考虑$P(\theta)$时是最大后验。</p>
-<h2 id="例2【掷硬币】"><a href="#例2【掷硬币】" class="headerlink" title="例2【掷硬币】"></a>例2【掷硬币】</h2><p><a href="http://blog.csdn.net/u011508640/article/details/72815981" target="_blank" rel="noopener">http://blog.csdn.net/u011508640/article/details/72815981</a><br>还是nebulaf91 博客里，有个掷硬币的例子来解释最大似然和最大后验。</p>
-<h1 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h1><p>关于具体例子：<a href="http://blog.csdn.net/pipisorry/article/details/42715245" target="_blank" rel="noopener">http://blog.csdn.net/pipisorry/article/details/42715245</a><br>关于$P(X|\theta)$和$P(X;\theta)$的理解：<a href="http://blog.csdn.net/u011508640/article/details/72815981" target="_blank" rel="noopener">http://blog.csdn.net/u011508640/article/details/72815981</a></p>
-<p>25.01.2018 新发现一篇和我这里想法很相似的文章：<a href="https://zhuanlan.zhihu.com/p/32480810" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/32480810</a></p>
+        <a id="more"></a>
+<h1 id="Traditional-Gradient-Descent"><a href="#Traditional-Gradient-Descent" class="headerlink" title="Traditional Gradient Descent"></a><font size="6px">Traditional Gradient Descent</font></h1><p>最基本的优化方法，在函数的每个位置，沿着梯度下降的方向进行不断迭代，直到达到一个点，这个点的各个方向上的导数均小于等于0。<br>$\theta = \theta - \eta \cdot \nabla_\theta J( \theta)\tag{1.1}$<br>这是梯度下降算法最基本的形式，我这里就不做过多解释。<br>下面先说梯度下降算法的三种形式</p>
+<h1 id="Batch-Gradient-Descent"><a href="#Batch-Gradient-Descent" class="headerlink" title="Batch Gradient Descent"></a>Batch Gradient Descent</h1><p>批量梯度下降法会考虑样本集中所有的样本，对梯度进行平均计算。<br></p>
+<ul>
+<li><strong><font color="green">优</font></strong><ul>
+<li>对于凸函数，BGD保证在全局最小值处收敛，对于非凸函数，BGD保证收敛于一个局部最小值。</li>
+</ul>
+</li>
+<li><strong><font color="red">缺</font></strong><ul>
+<li>对于整个数据集，在一个周期内，我们只进行一次更新，所以当数据量很大的时候BGD会非常的缓慢</li>
+<li>不具有交互性，因为不能实时的根据新的数据来更新权重</li>
+</ul>
+</li>
+</ul>
+<h1 id="Stochastic-Gradient-Descent"><a href="#Stochastic-Gradient-Descent" class="headerlink" title="Stochastic Gradient Descent"></a>Stochastic Gradient Descent</h1><p>随机梯度下降法和批量梯度下降的想法完全相反，每一次只训练一个样本。<br>$\theta = \theta - \eta \cdot \nabla_\theta J( \theta; x^{(i)}; y^{(i)})$<br>这个算法每次只会取数据集中的一个样本计算梯度，然后对参数进行优化。</p>
+<ul>
+<li><p><strong><font color="green">优</font></strong></p>
+<ul>
+<li>随机梯度下降法每次迭代只针对一个样本，所以没有冗余,并且计算的速度会大大加快</li>
+<li>可以实现在线学习，当有新数据传入模型时可以实时更新</li>
+<li>由于频繁的更新和波动有利于算法跳出局部最小点，从而找到更优解</li>
+</ul>
+</li>
+<li><p><strong><font color="red">缺</font></strong></p>
+<ul>
+<li>优化过程中，由于频繁的更新会造成大方差，误差函数的结果会有很大波动</li>
+</ul>
+</li>
+</ul>
+<h1 id="Mini-batch-Gradient-Descent"><a href="#Mini-batch-Gradient-Descent" class="headerlink" title="Mini-batch Gradient Descent"></a>Mini-batch Gradient Descent</h1><p>这种算法会综合批量梯度下降和随机梯度下降，也就是，将整个数据集分为几个组，对每个组运用批量梯度下降法。<br>对于每个组中样本数量的选择，我们通常选$2^x$个（32,64,128,256），这主要因为这样更适合计算机的内存对他们进行运算，与硬件结构有关</p>
+<ul>
+<li><strong><font color="green">优</font></strong><ul>
+<li>减少了参数优化过程中的波动，能够更快更好更稳定的得到收敛</li>
+<li>可以使用深层学习库中的矩阵优化方法，使算法更加高效</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/48799a28ly1fnsd1qvc2jj20ra0fj78k.jpg" width="500" height="500"><br><img src="http://ww1.sinaimg.cn/large/48799a28ly1fnsd23w7mgj20qz0fgq9n.jpg" width="500" height="500"></p>
+<center>取自Ng老师的Deeplearning.ai系列课程</center>
+
+
+<p>第一幅图显示了BGD，MBGD 和 SGD在训练过程中的区别,BGD的误差函数会随着迭代次数的增加不断下降，并找到一个最小值点，基本不会有什么波动。MBGD由于不会考虑整个数据集，每个Batch的可能会有自己的特点，误差函数在迭代过程中会产生波动。SGD的图没有画出，不过可以想象，SGD的误差函数将会有很大的波动。<br>第二幅图可以看出三种方法在路径上的区别，可以看出BGD一直指向最小点，SGD在不同位置的方向具有很大随机性，而MBGD则取了他们两者的“平均”。<br>在Andrew Ng老师的课里有比较详细的讲解，传送门：<a href="https://www.coursera.org/learn/deep-neural-network/" target="*blank" rel="noopener">Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization</a></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>总体来说，对于传统的梯度下降算法，小批量梯度下降法是比较完善，并且被广泛运用的算法。<br>然而，在处理实际过程中，传统梯度下降的方法依然有许多缺陷。</p>
+<ul>
+<li><strong><font color="red">缺陷</font></strong><ul>
+<li>在学习率的选择上<br>式1.1中的$\eta$被称为学习率，对于学习率的选择会很大程度上影响算法的性能，如果$\eta$选的太大，容易优化的不收敛，出现震荡甚至发散。<br>实际应用中，同样学习速率可能不适用于所有的特征，而应该分开考虑。</li>
+<li>优化过程最大的障碍在于 local minima 和 saddle points<br>local minima是对于非凸误差函数中的局部最小值，优化很容易被困在困在局部最小值<br>saddle points是鞍点，在实际应用中，鞍点比局部最小值出现的更加频繁，在鞍点上，各个方向的梯度均为0</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://ww1.sinaimg.cn/large/48799a28ly1fnsakug1xkj20j10j141l.jpg" width="600" height="600" align="center/"></p>
+<center>图上显示的是一个二维鞍点</center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       
     </div>
@@ -450,14 +462,6 @@ P(X \vert \theta) P(\theta) = \frac{P(X \vert \theta) P(\theta)}{P(X)}
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tswc.github.io/tags/machine-learning/" rel="tag"># machine learning</a>
-          
-            <a href="/tswc.github.io/tags/statistic/" rel="tag"># statistic</a>
-          
-        </div>
-      
 
       
       
@@ -467,8 +471,8 @@ P(X \vert \theta) P(\theta) = \frac{P(X \vert \theta) P(\theta)}{P(X)}
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/tswc.github.io/2018/01/09/test/" rel="next" title="这是第一篇">
-                <i class="fa fa-chevron-left"></i> 这是第一篇
+              <a href="/tswc.github.io/2018/01/18/SVM-1/" rel="next" title="什么是SVM（一）">
+                <i class="fa fa-chevron-left"></i> 什么是SVM（一）
               </a>
             
           </div>
@@ -476,10 +480,6 @@ P(X \vert \theta) P(\theta) = \frac{P(X \vert \theta) P(\theta)}{P(X)}
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/tswc.github.io/2018/01/18/SVM-1/" rel="prev" title="什么是SVM（一）">
-                什么是SVM（一） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -670,7 +670,7 @@ show_date_time();
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#概率和统计"><span class="nav-number">1.</span> <span class="nav-text">概率和统计</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#贝叶斯"><span class="nav-number">2.</span> <span class="nav-text">贝叶斯</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#例1【汽车被砸与警报器】"><span class="nav-number">2.1.</span> <span class="nav-text">例1【汽车被砸与警报器】</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#似然-amp-后验"><span class="nav-number">3.</span> <span class="nav-text">似然&amp;后验</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#似然-P-X-theta"><span class="nav-number">3.1.</span> <span class="nav-text">似然: $P(X|\theta)$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后验-P-theta-X"><span class="nav-number">3.2.</span> <span class="nav-text">后验:$P(\theta|X)$</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例2【掷硬币】"><span class="nav-number">3.3.</span> <span class="nav-text">例2【掷硬币】</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考："><span class="nav-number">4.</span> <span class="nav-text">参考：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Traditional-Gradient-Descent"><span class="nav-number">1.</span> <span class="nav-text">Traditional Gradient Descent</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Batch-Gradient-Descent"><span class="nav-number">2.</span> <span class="nav-text">Batch Gradient Descent</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Stochastic-Gradient-Descent"><span class="nav-number">3.</span> <span class="nav-text">Stochastic Gradient Descent</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mini-batch-Gradient-Descent"><span class="nav-number">4.</span> <span class="nav-text">Mini-batch Gradient Descent</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -854,9 +854,9 @@ show_date_time();
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://tswc.github.io/2018/01/10/statistic/';
-          this.page.identifier = '2018/01/10/statistic/';
-          this.page.title = '极大似然vs最大后验';
+          this.page.url = 'http://tswc.github.io/2018/01/24/Optimization/';
+          this.page.identifier = '2018/01/24/Optimization/';
+          this.page.title = 'Optimization(1)';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://tswc-tangjian.disqus.com/embed.js';
