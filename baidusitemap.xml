@@ -4,6 +4,32 @@
 
     
   <url>
+    <loc>http://tswc.github.io/tswc.github.io/2018/01/18/SVM-1/</loc>
+    <lastmod>2018-01-26T15:23:24.247Z</lastmod>
+    <data>
+        <display>
+        <title>什么是SVM（一）</title>
+        <pubTime>2018-01-18T14:48:17.000Z</pubTime>
+        
+        <tag>machine learning</tag>
+         
+        <tag>math</tag>
+         
+         
+           
+             
+              <breadCrumb title="machine learning" url="http://tswc.github.io/tswc.github.io/categories/machine-learning/"/>
+          
+             
+              <breadCrumb title="basic" url="http://tswc.github.io/tswc.github.io/categories/machine-learning/basic/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+  <url>
     <loc>http://tswc.github.io/tswc.github.io/2018/01/10/statistic/</loc>
     <lastmod>2018-01-25T15:39:48.612Z</lastmod>
     <data>
@@ -11,33 +37,8 @@
         <title>极大似然vs最大后验</title>
         <pubTime>2018-01-10T08:46:44.000Z</pubTime>
         
-        <tag>machine learning</tag>
-         
         <tag>statistic</tag>
          
-         
-           
-             
-              <breadCrumb title="machine learning" url="http://tswc.github.io/tswc.github.io/categories/machine-learning/"/>
-          
-             
-              <breadCrumb title="basic" url="http://tswc.github.io/tswc.github.io/categories/machine-learning/basic/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://tswc.github.io/tswc.github.io/2018/01/18/SVM-1/</loc>
-    <lastmod>2018-01-25T11:24:25.384Z</lastmod>
-    <data>
-        <display>
-        <title>什么是SVM（一）</title>
-        <pubTime>2018-01-18T14:48:17.000Z</pubTime>
-        
-        <tag>math</tag>
-         
         <tag>machine learning</tag>
          
          
@@ -52,7 +53,6 @@
     </data>
     </url>
 
-    
     
     
   <url>
