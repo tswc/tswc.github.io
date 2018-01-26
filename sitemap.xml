@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://tswc.github.io/2018/01/18/SVM-1/</loc>
+    <loc>http://tswc.github.io/tags/index.html</loc>
     
-    <lastmod>2018-01-26T15:23:24.247Z</lastmod>
+    <lastmod>2018-01-26T15:54:22.591Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://tswc.github.io/about/index.html</loc>
     
-    <lastmod>2018-01-26T15:22:55.202Z</lastmod>
+    <lastmod>2018-01-26T15:54:01.736Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://tswc.github.io/2018/01/18/SVM-1/</loc>
+    
+    <lastmod>2018-01-26T15:23:24.247Z</lastmod>
     
   </url>
   
@@ -33,13 +40,6 @@
     <loc>http://tswc.github.io/2018/01/09/test/</loc>
     
     <lastmod>2018-01-16T12:12:59.104Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://tswc.github.io/tags/index.html</loc>
-    
-    <lastmod>2018-01-11T22:25:29.044Z</lastmod>
     
   </url>
   
