@@ -79,21 +79,19 @@
 
 
 
-<meta name="description" content="Traditional Gradient Descent最基本的优化方法，在函数的每个位置，沿着梯度下降的方向进行不断迭代，直到达到一个点，这个点的各个方向上的导数均小于等于0。$\theta = \theta - \eta \cdot \nabla_\theta J( \theta)\tag{1.1}$这是梯度下降算法最基本的形式，我这里就不做过多解释。下面先说梯度下降算法的三种形式 Batc">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Optimization(1)">
+<meta property="og:title" content="优化法（一）">
 <meta property="og:url" content="http://tswc.github.io/2018/01/24/Optimization/index.html">
 <meta property="og:site_name" content="6 months for a job">
-<meta property="og:description" content="Traditional Gradient Descent最基本的优化方法，在函数的每个位置，沿着梯度下降的方向进行不断迭代，直到达到一个点，这个点的各个方向上的导数均小于等于0。$\theta = \theta - \eta \cdot \nabla_\theta J( \theta)\tag{1.1}$这是梯度下降算法最基本的形式，我这里就不做过多解释。下面先说梯度下降算法的三种形式 Batc">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28ly1fnumcyqcmqj20lx0fpams.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28ly1fnsd1qvc2jj20ra0fj78k.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28ly1fnsd23w7mgj20qz0fgq9n.jpg">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/48799a28ly1fnsakug1xkj20j10j141l.jpg">
-<meta property="og:updated_time" content="2018-01-26T19:21:11.280Z">
+<meta property="og:updated_time" content="2018-01-26T19:32:40.262Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Optimization(1)">
-<meta name="twitter:description" content="Traditional Gradient Descent最基本的优化方法，在函数的每个位置，沿着梯度下降的方向进行不断迭代，直到达到一个点，这个点的各个方向上的导数均小于等于0。$\theta = \theta - \eta \cdot \nabla_\theta J( \theta)\tag{1.1}$这是梯度下降算法最基本的形式，我这里就不做过多解释。下面先说梯度下降算法的三种形式 Batc">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/48799a28ly1fnsd1qvc2jj20ra0fj78k.jpg">
+<meta name="twitter:title" content="优化法（一）">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/48799a28ly1fnumcyqcmqj20lx0fpams.jpg">
 
 
 
@@ -129,7 +127,7 @@
 
 
 
-  <title>Optimization(1) | 6 months for a job</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>优化法（一） | 6 months for a job</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -273,7 +271,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Optimization(1)</h1>
+          <h1 class="post-title" itemprop="name headline">优化法（一）</h1>
         
 
         <div class="post-meta">
@@ -314,7 +312,7 @@
 
           
           
-             <span id="/tswc.github.io/2018/01/24/Optimization/" class="leancloud_visitors" data-flag-title="Optimization(1)">
+             <span id="/tswc.github.io/2018/01/24/Optimization/" class="leancloud_visitors" data-flag-title="优化法（一）">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -378,7 +376,9 @@
       
 
       
-        <a id="more"></a>
+        <p><img src="http://ww1.sinaimg.cn/large/48799a28ly1fnumcyqcmqj20lx0fpams.jpg" width="600" height="600" align="center/"></p>
+<a id="more"></a>
+<p><br></p>
 <h1 id="Traditional-Gradient-Descent"><a href="#Traditional-Gradient-Descent" class="headerlink" title="Traditional Gradient Descent"></a><font size="6px">Traditional Gradient Descent</font></h1><p>最基本的优化方法，在函数的每个位置，沿着梯度下降的方向进行不断迭代，直到达到一个点，这个点的各个方向上的导数均小于等于0。<br>$\theta = \theta - \eta \cdot \nabla_\theta J( \theta)\tag{1.1}$<br>这是梯度下降算法最基本的形式，我这里就不做过多解释。<br>下面先说梯度下降算法的三种形式</p>
 <h1 id="Batch-Gradient-Descent"><a href="#Batch-Gradient-Descent" class="headerlink" title="Batch Gradient Descent"></a>Batch Gradient Descent</h1><p>批量梯度下降法会考虑样本集中所有的样本，对梯度进行平均计算。<br></p>
 <ul>
@@ -856,7 +856,7 @@ show_date_time();
         var disqus_config = function () {
           this.page.url = 'http://tswc.github.io/2018/01/24/Optimization/';
           this.page.identifier = '2018/01/24/Optimization/';
-          this.page.title = 'Optimization(1)';
+          this.page.title = '优化法（一）';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://tswc-tangjian.disqus.com/embed.js';
