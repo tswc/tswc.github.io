@@ -5,14 +5,26 @@
     
   <url>
     <loc>http://tswc.github.io/tswc.github.io/2018/01/24/Optimization/</loc>
-    <lastmod>2018-01-26T19:32:40.262Z</lastmod>
+    <lastmod>2018-01-26T19:36:14.719Z</lastmod>
     <data>
         <display>
         <title>优化法（一）</title>
         <pubTime>2018-01-24T09:36:29.000Z</pubTime>
         
+        <tag>机器学习</tag>
+         
+        <tag>梯度下降</tag>
+         
+        <tag>优化</tag>
+         
          
            
+             
+              <breadCrumb title="machine learning" url="http://tswc.github.io/tswc.github.io/categories/machine-learning/"/>
+          
+             
+              <breadCrumb title="basic" url="http://tswc.github.io/tswc.github.io/categories/machine-learning/basic/"/>
+          
         </display>
     </data>
     </url>
